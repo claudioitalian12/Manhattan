@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5D0326AB2943BE3500A731F8 /* ManhattanSignUp in Frameworks */ = {isa = PBXBuildFile; productRef = 5D0326AA2943BE3500A731F8 /* ManhattanSignUp */; };
-		5D13579C293D2204004CABB4 /* ManhattanCore in Frameworks */ = {isa = PBXBuildFile; productRef = 5D13579B293D2204004CABB4 /* ManhattanCore */; };
-		5D13579E293D2204004CABB4 /* ManhattanLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 5D13579D293D2204004CABB4 /* ManhattanLogin */; };
 		5D585A632943E3C0008DE9CA /* ManhattanGatewayFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D585A622943E3C0008DE9CA /* ManhattanGatewayFactory.swift */; };
-		5D6FD6B2294BAF3D00C1617D /* ManhattanHome in Frameworks */ = {isa = PBXBuildFile; productRef = 5D6FD6B1294BAF3D00C1617D /* ManhattanHome */; };
+		5DB3086F296AD062003D6421 /* ManhattanCore in Frameworks */ = {isa = PBXBuildFile; productRef = 5DB3086E296AD062003D6421 /* ManhattanCore */; };
+		5DB30871296AD062003D6421 /* ManhattanHome in Frameworks */ = {isa = PBXBuildFile; productRef = 5DB30870296AD062003D6421 /* ManhattanHome */; };
+		5DB30873296AD062003D6421 /* ManhattanLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 5DB30872296AD062003D6421 /* ManhattanLogin */; };
+		5DB30875296AD062003D6421 /* ManhattanSignUp in Frameworks */ = {isa = PBXBuildFile; productRef = 5DB30874296AD062003D6421 /* ManhattanSignUp */; };
 		5DEDFCE929303D5A001822CF /* ManhattanApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEDFCE829303D5A001822CF /* ManhattanApp.swift */; };
 		5DEDFCED29303D5B001822CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5DEDFCEC29303D5B001822CF /* Assets.xcassets */; };
 		5DEDFCF129303D5B001822CF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5DEDFCF029303D5B001822CF /* Preview Assets.xcassets */; };
@@ -62,10 +62,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5D0326AB2943BE3500A731F8 /* ManhattanSignUp in Frameworks */,
-				5D13579C293D2204004CABB4 /* ManhattanCore in Frameworks */,
-				5D6FD6B2294BAF3D00C1617D /* ManhattanHome in Frameworks */,
-				5D13579E293D2204004CABB4 /* ManhattanLogin in Frameworks */,
+				5DB30871296AD062003D6421 /* ManhattanHome in Frameworks */,
+				5DB30875296AD062003D6421 /* ManhattanSignUp in Frameworks */,
+				5DB30873296AD062003D6421 /* ManhattanLogin in Frameworks */,
+				5DB3086F296AD062003D6421 /* ManhattanCore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,6 +86,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5DB3086B296ACFF0003D6421 /* LocalPackage */ = {
+			isa = PBXGroup;
+			children = (
+				5D135799293D2169004CABB4 /* ManhattanCore */,
+				5D13579A293D21D8004CABB4 /* ManhattanLogin */,
+				5D0326A92943AD1300A731F8 /* ManhattanSignUp */,
+				5D585A642944B317008DE9CA /* ManhattanHome */,
+			);
+			path = LocalPackage;
+			sourceTree = "<group>";
+		};
 		5DD8CBE4293573CE00B6F899 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -96,7 +107,7 @@
 		5DEDFCDC29303D5A001822CF = {
 			isa = PBXGroup;
 			children = (
-				5DEDFD1329303E24001822CF /* Packages */,
+				5DB3086B296ACFF0003D6421 /* LocalPackage */,
 				5DEDFCE729303D5A001822CF /* Manhattan */,
 				5DEDFCF929303D5B001822CF /* ManhattanTests */,
 				5DEDFD0329303D5B001822CF /* ManhattanUITests */,
@@ -154,17 +165,6 @@
 			path = ManhattanUITests;
 			sourceTree = "<group>";
 		};
-		5DEDFD1329303E24001822CF /* Packages */ = {
-			isa = PBXGroup;
-			children = (
-				5D135799293D2169004CABB4 /* ManhattanCore */,
-				5D13579A293D21D8004CABB4 /* ManhattanLogin */,
-				5D0326A92943AD1300A731F8 /* ManhattanSignUp */,
-				5D585A642944B317008DE9CA /* ManhattanHome */,
-			);
-			name = Packages;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -182,10 +182,10 @@
 			);
 			name = Manhattan;
 			packageProductDependencies = (
-				5D13579B293D2204004CABB4 /* ManhattanCore */,
-				5D13579D293D2204004CABB4 /* ManhattanLogin */,
-				5D0326AA2943BE3500A731F8 /* ManhattanSignUp */,
-				5D6FD6B1294BAF3D00C1617D /* ManhattanHome */,
+				5DB3086E296AD062003D6421 /* ManhattanCore */,
+				5DB30870296AD062003D6421 /* ManhattanHome */,
+				5DB30872296AD062003D6421 /* ManhattanLogin */,
+				5DB30874296AD062003D6421 /* ManhattanSignUp */,
 			);
 			productName = Manhattan;
 			productReference = 5DEDFCE529303D5A001822CF /* Manhattan.app */;
@@ -686,21 +686,21 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		5D0326AA2943BE3500A731F8 /* ManhattanSignUp */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = ManhattanSignUp;
-		};
-		5D13579B293D2204004CABB4 /* ManhattanCore */ = {
+		5DB3086E296AD062003D6421 /* ManhattanCore */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = ManhattanCore;
 		};
-		5D13579D293D2204004CABB4 /* ManhattanLogin */ = {
+		5DB30870296AD062003D6421 /* ManhattanHome */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ManhattanHome;
+		};
+		5DB30872296AD062003D6421 /* ManhattanLogin */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = ManhattanLogin;
 		};
-		5D6FD6B1294BAF3D00C1617D /* ManhattanHome */ = {
+		5DB30874296AD062003D6421 /* ManhattanSignUp */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = ManhattanHome;
+			productName = ManhattanSignUp;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
