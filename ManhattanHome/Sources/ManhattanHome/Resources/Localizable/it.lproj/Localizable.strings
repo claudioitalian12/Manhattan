@@ -1,0 +1,27 @@
+//=============================================== Home  ===========================================
+
+"homeView_hours_title" = "Temperature prossime 24h";
+"homeView_day_title" = "Temperature prossimi 10 giorni";
+"kwhConsumptionView_kwh_text" = "Consumo chilowattora di una casa considerando le condizioni climatiche:";
+"homeView_profile_alert_title" = "Attenzione!";
+"homeView_profile_alert_button" = "Chiudi";
+"eventDetailView_profile_title_textfield" = "Nuovo Evento";
+"eventDetailView_profile_title_date" = "Data";
+"eventDetailView_profile_title_divider" = "Tasks";
+"eventDetailView_profile_add_button" = "Aggiungi Task";
+"eventEditorView_profile_navigation_remove_button" = "Cancella";
+"eventEditorView_profile_navigation_add_button" = "Aggiungi";
+"eventEditorView_profile_navigation_done_button" = "Fine";
+"eventEditorView_profile_navigation_edit_button" = "Modifica";
+"eventEditorView_profile_toolbar_delete_button" = "Cancella Evento";
+"eventEditorView_profile_title_detail_text" = "Evento cancellato. Seleziona un evento.";
+"eventListView_profile_title_text" = "Eventi Programmati";
+"eventTaskRow_profile_field_text" = "Descrizione task";
+"profileView_profile_menu_id" = "Copia User ID";
+"profileView_profile_menu_logout" = "Logout";
+"profileView_profile_menu_delete" = "Cancella Account";
+"profileView_profile_menu_setting" = "Impostazioni";
+"profileView_profile_list_section_next7" = "Prossimi 7 Giorni";
+"profileView_profile_list_section_next30" = "Prossimi 30 Giorni";
+"profileView_profile_list_section_future" = "In futuro";
+"profileView_profile_list_section_past" = "Passati";

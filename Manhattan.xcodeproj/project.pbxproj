@@ -7,8 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5D0326AB2943BE3500A731F8 /* ManhattanSignUp in Frameworks */ = {isa = PBXBuildFile; productRef = 5D0326AA2943BE3500A731F8 /* ManhattanSignUp */; };
+		5D13579C293D2204004CABB4 /* ManhattanCore in Frameworks */ = {isa = PBXBuildFile; productRef = 5D13579B293D2204004CABB4 /* ManhattanCore */; };
+		5D13579E293D2204004CABB4 /* ManhattanLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 5D13579D293D2204004CABB4 /* ManhattanLogin */; };
+		5D585A632943E3C0008DE9CA /* ManhattanGatewayFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D585A622943E3C0008DE9CA /* ManhattanGatewayFactory.swift */; };
+		5D6FD6B2294BAF3D00C1617D /* ManhattanHome in Frameworks */ = {isa = PBXBuildFile; productRef = 5D6FD6B1294BAF3D00C1617D /* ManhattanHome */; };
 		5DEDFCE929303D5A001822CF /* ManhattanApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEDFCE829303D5A001822CF /* ManhattanApp.swift */; };
-		5DEDFCEB29303D5A001822CF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEDFCEA29303D5A001822CF /* ContentView.swift */; };
 		5DEDFCED29303D5B001822CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5DEDFCEC29303D5B001822CF /* Assets.xcassets */; };
 		5DEDFCF129303D5B001822CF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5DEDFCF029303D5B001822CF /* Preview Assets.xcassets */; };
 		5DEDFCFB29303D5B001822CF /* ManhattanTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEDFCFA29303D5B001822CF /* ManhattanTests.swift */; };
@@ -34,9 +38,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5D0326A92943AD1300A731F8 /* ManhattanSignUp */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = ManhattanSignUp; sourceTree = "<group>"; };
+		5D135799293D2169004CABB4 /* ManhattanCore */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = ManhattanCore; sourceTree = "<group>"; };
+		5D13579A293D21D8004CABB4 /* ManhattanLogin */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = ManhattanLogin; sourceTree = "<group>"; };
+		5D585A622943E3C0008DE9CA /* ManhattanGatewayFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManhattanGatewayFactory.swift; sourceTree = "<group>"; };
+		5D585A642944B317008DE9CA /* ManhattanHome */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = ManhattanHome; sourceTree = "<group>"; };
+		5D585A6729462C5D008DE9CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		5DBE35E9293A932C009CCCC7 /* ManhattanDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ManhattanDebug.entitlements; sourceTree = "<group>"; };
 		5DEDFCE529303D5A001822CF /* Manhattan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Manhattan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DEDFCE829303D5A001822CF /* ManhattanApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManhattanApp.swift; sourceTree = "<group>"; };
-		5DEDFCEA29303D5A001822CF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		5DEDFCEC29303D5B001822CF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5DEDFCEE29303D5B001822CF /* Manhattan.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Manhattan.entitlements; sourceTree = "<group>"; };
 		5DEDFCF029303D5B001822CF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -52,6 +62,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D0326AB2943BE3500A731F8 /* ManhattanSignUp in Frameworks */,
+				5D13579C293D2204004CABB4 /* ManhattanCore in Frameworks */,
+				5D6FD6B2294BAF3D00C1617D /* ManhattanHome in Frameworks */,
+				5D13579E293D2204004CABB4 /* ManhattanLogin in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,13 +86,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5DD8CBE4293573CE00B6F899 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		5DEDFCDC29303D5A001822CF = {
 			isa = PBXGroup;
 			children = (
+				5DEDFD1329303E24001822CF /* Packages */,
 				5DEDFCE729303D5A001822CF /* Manhattan */,
 				5DEDFCF929303D5B001822CF /* ManhattanTests */,
 				5DEDFD0329303D5B001822CF /* ManhattanUITests */,
 				5DEDFCE629303D5A001822CF /* Products */,
+				5DD8CBE4293573CE00B6F899 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -95,8 +118,10 @@
 		5DEDFCE729303D5A001822CF /* Manhattan */ = {
 			isa = PBXGroup;
 			children = (
+				5D585A6729462C5D008DE9CA /* Info.plist */,
+				5DBE35E9293A932C009CCCC7 /* ManhattanDebug.entitlements */,
 				5DEDFCE829303D5A001822CF /* ManhattanApp.swift */,
-				5DEDFCEA29303D5A001822CF /* ContentView.swift */,
+				5D585A622943E3C0008DE9CA /* ManhattanGatewayFactory.swift */,
 				5DEDFCEC29303D5B001822CF /* Assets.xcassets */,
 				5DEDFCEE29303D5B001822CF /* Manhattan.entitlements */,
 				5DEDFCEF29303D5B001822CF /* Preview Content */,
@@ -129,6 +154,17 @@
 			path = ManhattanUITests;
 			sourceTree = "<group>";
 		};
+		5DEDFD1329303E24001822CF /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				5D135799293D2169004CABB4 /* ManhattanCore */,
+				5D13579A293D21D8004CABB4 /* ManhattanLogin */,
+				5D0326A92943AD1300A731F8 /* ManhattanSignUp */,
+				5D585A642944B317008DE9CA /* ManhattanHome */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -145,6 +181,12 @@
 			dependencies = (
 			);
 			name = Manhattan;
+			packageProductDependencies = (
+				5D13579B293D2204004CABB4 /* ManhattanCore */,
+				5D13579D293D2204004CABB4 /* ManhattanLogin */,
+				5D0326AA2943BE3500A731F8 /* ManhattanSignUp */,
+				5D6FD6B1294BAF3D00C1617D /* ManhattanHome */,
+			);
 			productName = Manhattan;
 			productReference = 5DEDFCE529303D5A001822CF /* Manhattan.app */;
 			productType = "com.apple.product-type.application";
@@ -193,7 +235,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1400;
-				LastUpgradeCheck = 1400;
+				LastUpgradeCheck = 1410;
 				TargetAttributes = {
 					5DEDFCE429303D5A001822CF = {
 						CreatedOnToolsVersion = 14.0.1;
@@ -215,6 +257,7 @@
 			knownRegions = (
 				en,
 				Base,
+				it,
 			);
 			mainGroup = 5DEDFCDC29303D5A001822CF;
 			productRefGroup = 5DEDFCE629303D5A001822CF /* Products */;
@@ -259,7 +302,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5DEDFCEB29303D5A001822CF /* ContentView.swift in Sources */,
+				5D585A632943E3C0008DE9CA /* ManhattanGatewayFactory.swift in Sources */,
 				5DEDFCE929303D5A001822CF /* ManhattanApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -330,6 +373,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -347,6 +391,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -388,6 +434,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -399,6 +446,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -411,14 +460,21 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = Manhattan/Manhattan.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Manhattan/ManhattanDebug.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Manhattan/Preview Content\"";
-				DEVELOPMENT_TEAM = 983B8C4PLM;
+				DEVELOPMENT_TEAM = 3LF4A2398Q;
 				ENABLE_HARDENED_RUNTIME = YES;
+				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Manhattan/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Abbiamo bisogno della tua posizione per capire che tempo c'e'";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Abbiamo bisogno della tua posizione per capire che tempo c'e'";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -432,12 +488,15 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.claudio.pmi.Manhattan;
+				PRODUCT_BUNDLE_IDENTIFIER = com.claudio.Manhattan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -450,13 +509,19 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Manhattan/Manhattan.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Manhattan/Preview Content\"";
-				DEVELOPMENT_TEAM = 983B8C4PLM;
+				DEVELOPMENT_TEAM = 3LF4A2398Q;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Manhattan/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Abbiamo bisogno della tua posizione per capire che tempo c'e'";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Abbiamo bisogno della tua posizione per capire che tempo c'e'";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -470,12 +535,15 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.claudio.pmi.Manhattan;
+				PRODUCT_BUNDLE_IDENTIFIER = com.claudio.Manhattan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -489,10 +557,11 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 983B8C4PLM;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
-				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.claudio.pmi.ManhattanTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -512,10 +581,11 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 983B8C4PLM;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
-				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.claudio.pmi.ManhattanTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -534,10 +604,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 983B8C4PLM;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
-				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.claudio.pmi.ManhattanUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -556,10 +627,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 983B8C4PLM;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
-				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.claudio.pmi.ManhattanUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -612,6 +684,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		5D0326AA2943BE3500A731F8 /* ManhattanSignUp */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ManhattanSignUp;
+		};
+		5D13579B293D2204004CABB4 /* ManhattanCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ManhattanCore;
+		};
+		5D13579D293D2204004CABB4 /* ManhattanLogin */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ManhattanLogin;
+		};
+		5D6FD6B1294BAF3D00C1617D /* ManhattanHome */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ManhattanHome;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 5DEDFCDD29303D5A001822CF /* Project object */;
 }

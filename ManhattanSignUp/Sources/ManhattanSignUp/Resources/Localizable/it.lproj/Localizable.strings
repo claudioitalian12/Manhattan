@@ -1,0 +1,12 @@
+//=============================================== Sign Up  ===========================================
+
+"signinView_label_title" = "Crea Account";
+"signinView_label_username" = "Inserisci il tuo nome";
+"signinView_label_password" = "Inserisci la tua password";
+"signUpView_button_username_placeholder" = "Username";
+"signUpView_button_password_placeholder" = "Password minimo 6 caratteri";
+"signUpView_button_home" = "Accedi";
+"signUpView_button_back" = "Annulla Registrazione";
+"signUpView_alert_title" = "Attenzione!";
+"signUpView_alert_subtitle" = "Qualcosa non ha funzionato correttamente, prova dopo.";
+"signUpView_alert_button" = "Ok";

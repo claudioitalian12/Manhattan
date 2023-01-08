@@ -1,8 +1,8 @@
 //
 //  ContentView.swift
-//  Manhattan
+//  HomeSampleApp
 //
-//  Created by Claudio Cavalli on 25/11/22.
+//  Created by Claudio Cavalli on 15/12/22.
 //
 
 import SwiftUI
@@ -16,11 +16,5 @@ struct ContentView: View {
             Text("Hello, world!")
         }
         .padding()
-    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
     }
 }
