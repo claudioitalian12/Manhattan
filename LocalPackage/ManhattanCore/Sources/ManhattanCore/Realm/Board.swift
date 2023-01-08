@@ -18,8 +18,8 @@ public class Board: Object, ObjectKeyIdentifiable {
     override public init() {}
     
     public init(
-        _id: ObjectId,
-        boardTasks: RealmSwift.List<BoardTask>,
+        _id: ObjectId = ObjectId.generate(),
+        boardTasks: RealmSwift.List<BoardTask> = RealmSwift.List<BoardTask>(),
         owner_id: String? = nil,
         shared_id: RealmSwift.List<String>,
         title: String

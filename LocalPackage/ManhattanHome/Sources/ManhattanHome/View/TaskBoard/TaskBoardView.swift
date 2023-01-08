@@ -15,8 +15,8 @@ struct TaskBoardView: View {
     @StateRealmObject var boardsData: BoardsData = BoardsData()
     @State private var selection = Board()
     @State private var showAddBoard = false
-    @State private var boardName = ""
-    @State private var boardID = ""
+
+    @State private var addTask = false
     
     init(
         viewModel: TaskBoardViewModel
@@ -36,63 +36,92 @@ struct TaskBoardView: View {
     }
     
     var body: some View {
-        VStack(
-            spacing: 40.0
-        ) {
+        VStack {
             viewBoardHeader()
-            viewBoardTasks()
+            ScrollView(
+                showsIndicators: false
+            ) {
+                viewBoardTasks()
+            }
+            .refreshable {
+                refreshList()
+            }
         }
-        .frame(
-            maxWidth: .infinity
-        )
         .task(
             id: appEnvironment.realm
         ) {
-            guard let list = appEnvironment.realm?.objects(BoardsData.self),
-                  let myList = list.first else {
-                return
-            }
-            boardsData = myList
-            selection = myList.boards.first ?? Board()
+            loadBoards()
         }
-        .sheet(isPresented: $showAddBoard) {
-            NavigationStack {
-                VStack {
-                    TextField("board Name", text: $boardName)
-                    TextField("board user ID", text: $boardID)
-                }
-                .toolbar {
-                    ToolbarItem(
-                        placement: .cancellationAction
-                    ) {
-                        Button {
-                            showAddBoard.toggle()
-                        } label: {
-                            Text("cancel")
-                        }
-                    }
-                    ToolbarItem {
-                        Button {
-                            showAddBoard.toggle()
-                        } label: {
-                            Text("done")
-                        }
-                    }
-                }
-            }
+        .sheet(
+            isPresented: $showAddBoard
+        ) {
+            TaskBoardCreateView(
+                selection: $selection,
+                showAddBoard: $showAddBoard
+            )
         }
+    }
+    
+    private func loadBoards() {
+        guard let list = appEnvironment.realm?.objects(BoardsData.self),
+              let myList = list.first else {
+            boardsData.owner_id = appEnvironment.getUserID()
+            appEnvironment.realm?.writeAsync({
+                appEnvironment.realm?.add(boardsData)
+            }, onComplete: { error in
+                guard let boardsObject = appEnvironment.realm?.objects(Board.self) else { return }
+                boardsData.boards.append(objectsIn: boardsObject)
+            })
+            return
+        }
+        boardsData = myList
+        selection = myList.boards.first ?? Board()
+        appEnvironment.realm?.objects(Board.self).forEach({ board in
+            if board.owner_id != appEnvironment.getUserID() && !boardsData.boards.contains(where: { boardObject in
+                boardObject._id == board._id
+            }) {
+                appEnvironment.realm?.writeAsync({
+                    $boardsData.boards.append(board)
+                })
+            }
+        })
+        addTask.toggle()
+    }
+    
+    private func refreshList() {
+        let tempSelect = selection
+        guard let list = appEnvironment.realm?.objects(BoardsData.self),
+              let myList = list.first else {
+            boardsData.owner_id = appEnvironment.getUserID()
+            appEnvironment.realm?.writeAsync({
+                appEnvironment.realm?.add(boardsData)
+            }, onComplete: { error in
+                guard let boardsObject = appEnvironment.realm?.objects(Board.self) else { return }
+                boardsData.boards.append(objectsIn: boardsObject)
+                addTask.toggle()
+            })
+            return
+        }
+        boardsData = myList
+        selection = tempSelect
+        appEnvironment.realm?.objects(Board.self).forEach({ board in
+            if board.owner_id != appEnvironment.getUserID() && !boardsData.boards.contains(where: { boardObject in
+                boardObject._id == board._id
+            }) {
+                appEnvironment.realm?.writeAsync({
+                    $boardsData.boards.append(board)
+                }, onComplete: { _ in
+                    addTask.toggle()
+                })
+            }
+        })
     }
     
     @ViewBuilder
     private func viewBoardHeader() -> some View {
-        VStack {
-            viewHeader()
-            viewSegmentBoard()
-            viewSegmentStatus()
-        }
-        .frame(
-            maxWidth: .infinity
-        )
+        viewHeader()
+        viewSegmentBoard()
+        viewSegmentStatus()
     }
     
     @ViewBuilder
@@ -104,32 +133,42 @@ struct TaskBoardView: View {
                 .customTaskBoardText(
                     font: .largeTitle
                 )
-            Button {
-                showAddBoard.toggle()
-                //addBoard()
-            } label: {
-                Image(
-                    systemName: "plus.circle"
+            Menu {
+                Button {
+                    showAddBoard.toggle()
+                } label: {
+                    Text("Create Board")
+                    Image(systemName: "clipboard")
+                }
+                TaskBoardAddTaskView(
+                    board: $selection,
+                    addTask: $addTask
                 )
+            } label: {
+                Image(systemName: "list.bullet")
+                    .foregroundColor(.blue)
             }
         }
     }
     
     @ViewBuilder
     private func viewSegmentBoard() -> some View {
-        if boardsData.boards.count != 0 {
-            Picker(
-                "Select a board",
-                selection: $selection
-            ) {
-                ForEach(
-                    boardsData.boards,
-                    id: \.self
-                ) {
-                    Text($0.title)
+        Menu {
+            ForEach(
+                boardsData.boards,
+                id: \.self
+            ) { index in
+                Button {
+                    selection = index
+                } label: {
+                    Text(index.title)
                 }
+
             }
-            .pickerStyle(.menu)
+        } label: {
+            Text(selection.title)
+                .frame(maxWidth: .infinity)
+                .foregroundColor(.blue)
         }
     }
     
@@ -144,6 +183,7 @@ struct TaskBoardView: View {
                 id: \.self
             ) { option in
                 Text(option.rawValue)
+                    .tag(option.rawValue)
             }
         }
         .customTaskBoardPicker()
@@ -151,56 +191,16 @@ struct TaskBoardView: View {
     
     @ViewBuilder
     private func viewBoardTasks() -> some View {
-        ScrollView {
-            ForEach(selection.boardTasks) { boardTask in
-                TaskBoardCardCardView()
+        if addTask == true || addTask == false {
+            ForEach($selection.boardTasks.reversed()) { index in
+                if viewModel.segmentationSelection.rawValue == index.status.wrappedValue ||
+                    viewModel.segmentationSelection == .all {
+                    TaskBoardCardCardView(
+                        title: index.title.wrappedValue,
+                        text: index.text.wrappedValue
+                    )
+                }
             }
         }
-        .customTaskBoardScrollView()
-    }
-    
-    private func addBoard() {
-        var listId = RealmSwift.List<String>()
-        listId.append(appEnvironment.getDatabaseUser()!.id)
-        listId.append("63b8aa0b7c22118af8f9c196")
-
-        var task = RealmSwift.List<BoardTask>()
-        var boardTask = BoardTask(
-            _id: ObjectId.generate(),
-            board_id: ObjectId.generate(),
-            owner_id: appEnvironment.getDatabaseUser()!.id,
-            shared_id: listId,
-            status: "Closed",
-            text: "dewefefew",
-            title: "ewfefefer"
-        )
-        task.append(boardTask)
-        var board = Board(
-            _id: ObjectId.generate(),
-            boardTasks: task,
-            owner_id: appEnvironment.getDatabaseUser()!.id,
-            shared_id: listId,
-            title: "MySuperBoard"
-        )
-        var boardList = RealmSwift.List<Board>()
-        boardList.append(board)
-        appEnvironment.realm?.writeAsync({
-            appEnvironment.realm?.add(
-                BoardsData(
-                    _id: ObjectId.generate(),
-                    boards: boardList,
-                    owner_id: appEnvironment.getDatabaseUser()!.id
-                )
-            )
-        }, onComplete: { error in
-            guard let list = self.appEnvironment.realm?.objects(BoardsData.self),
-                  let myList = list.first else {
-                return
-            }
-            self.boardsData = myList
-            self.selection = myList.boards.first ?? Board()
-        })
     }
 }
-
-

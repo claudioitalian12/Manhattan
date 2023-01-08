@@ -21,7 +21,7 @@ public class BoardTask: Object, ObjectKeyIdentifiable {
     override public init() {}
     
     public init(
-        _id: ObjectId,
+        _id: ObjectId = ObjectId.generate(),
         assigned_id: String? = nil,
         board_id: ObjectId,
         owner_id: String? = nil,

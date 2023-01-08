@@ -9,6 +9,8 @@ import ManhattanCore
 import SwiftUI
 
 struct TaskBoardCardCardView: View {
+    @State var title = ""
+    @State var text = ""
     
     var body: some View {
         ZStack {
@@ -19,10 +21,10 @@ struct TaskBoardCardCardView: View {
             .customTaskBoardCardZStack()
 
             LazyVStack {
-                Text("My Task Title")
+                Text(title)
                     .customTaskBoardCardTitleText()
 
-                Text("body of my task is really funny wfnejwfnerfnrekfnrek")
+                Text(text)
                     .customTaskBoardCardSubtitleText()
             }
             .customTaskBoardCardLazyVStack()

@@ -16,8 +16,8 @@ public class BoardsData: Object, ObjectKeyIdentifiable {
     override public init() {}
     
     public init(
-        _id: ObjectId,
-        boards: RealmSwift.List<Board>,
+        _id: ObjectId = ObjectId.generate(),
+        boards: RealmSwift.List<Board> = RealmSwift.List<Board>(),
         owner_id: String? = nil
     ) {
         super.init()

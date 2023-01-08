@@ -56,7 +56,6 @@ struct TaskBoardScrollViewViewModifier: ViewModifier {
     ) -> some View {
         content
             .scrollIndicators(.hidden)
-            .refreshable {}
             .frame(
                 maxWidth: .infinity
             )

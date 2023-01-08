@@ -28,14 +28,12 @@ struct WeatherView: View {
             showsIndicators: false
         ) {
             LazyVStack {
-                LazyVStack {
-                    Text(viewModel.locationService.currentCityName ?? "")
-                        .customTextWeatherView()
-                    Text(viewModel.weatherService.temperature ?? "")
-                    weatherViewSubView(
-                        weatherService: viewModel.weatherService
-                    )
-                }
+                Text(viewModel.locationService.currentCityName ?? "")
+                    .customTextWeatherView()
+                Text(viewModel.weatherService.temperature ?? "")
+                weatherViewSubView(
+                    weatherService: viewModel.weatherService
+                )
             }
         }
         .refreshable {
