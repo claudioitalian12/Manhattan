@@ -15,7 +15,8 @@ struct TaskBoardShareIDView: View {
     var body: some View {
         TextField(
             "board user ID",
-            text: $shareId
+            text: $shareId,
+            axis: .vertical
         )
     }
 }

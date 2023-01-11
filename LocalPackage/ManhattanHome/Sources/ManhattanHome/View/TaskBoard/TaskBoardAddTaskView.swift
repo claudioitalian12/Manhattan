@@ -18,7 +18,10 @@ struct TaskBoardAddTaskView: View {
         Button {
             let boardTask = BoardTask(
                 assigned_id: appEnvironment.getUserID(),
+                attachments: RealmSwift.List<String>(),
+                boardSubTasks: RealmSwift.List<BoardSubTask>(),
                 board_id: board._id,
+                comments: RealmSwift.List<String>(),
                 owner_id: appEnvironment.getUserID(),
                 shared_id: board.shared_id,
                 status: "New",

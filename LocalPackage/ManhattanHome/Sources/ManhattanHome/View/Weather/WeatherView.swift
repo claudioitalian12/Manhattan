@@ -34,6 +34,9 @@ struct WeatherView: View {
                 weatherViewSubView(
                     weatherService: viewModel.weatherService
                 )
+                Spacer(
+                    minLength: 20.0
+                )
             }
         }
         .refreshable {

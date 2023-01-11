@@ -35,20 +35,23 @@ struct TaskRow: View {
             .buttonStyle(.plain)
 
             if isEditing || task.isNew {
-                TextField("eventTaskRow_profile_field_text".localized, text: $task.text)
-                    .focused($isFocused)
-                    .onChange(of: isFocused) { newValue in
-                        if newValue == false {
-                            appEnvironment.realm?.writeAsync({
-                                guard let thaw = task.thaw() else {
-                                    task.isNew = false
-                                    return
-                                }
-                                thaw.isNew = false
-                            })
-                        }
+                TextField(
+                    "eventTaskRow_profile_field_text".localized,
+                    text: $task.text,
+                    axis: .vertical
+                )
+                .focused($isFocused)
+                .onChange(of: isFocused) { newValue in
+                    if newValue == false {
+                        appEnvironment.realm?.writeAsync({
+                            guard let thaw = task.thaw() else {
+                                task.isNew = false
+                                return
+                            }
+                            thaw.isNew = false
+                        })
                     }
-
+                }
             } else {
                 Text(task.text)
             }

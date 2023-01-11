@@ -144,12 +144,16 @@ public final actor RealmUserService: UserService {
                     let queryBoardTaskSubscription = QuerySubscription<BoardTask>.init { event in
                         event.shared_id.contains(app.currentUser?.id ?? "")
                     }
+                    let queryBoardSubTaskSubscription = QuerySubscription<BoardSubTask>.init { event in
+                        event.shared_id.contains(app.currentUser?.id ?? "")
+                    }
                     
                     subs.append(querySubscription)
                     subs.append(queryTaskSubscription)
                     subs.append(queryBoardsDataSubscription)
                     subs.append(queryBoardSubscription)
                     subs.append(queryBoardTaskSubscription)
+                    subs.append(queryBoardSubTaskSubscription)
                 })
             
             config?.objectTypes = [
@@ -157,7 +161,8 @@ public final actor RealmUserService: UserService {
                 EventTask.self,
                 BoardsData.self,
                 Board.self,
-                BoardTask.self
+                BoardTask.self,
+                BoardSubTask.self
             ]
             
             let realm = try await Realm(

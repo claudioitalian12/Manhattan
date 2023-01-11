@@ -17,6 +17,8 @@ struct TaskBoardView: View {
     @State private var showAddBoard = false
 
     @State private var addTask = false
+    @State private var showDetail = false
+    @State private var listOrderLatest = true
     
     init(
         viewModel: TaskBoardViewModel
@@ -38,14 +40,18 @@ struct TaskBoardView: View {
     var body: some View {
         VStack {
             viewBoardHeader()
+            Spacer(minLength: 40.0)
             ScrollView(
                 showsIndicators: false
             ) {
                 viewBoardTasks()
             }
             .refreshable {
-                refreshList()
+                await refreshList()
             }
+            Spacer(
+                minLength: 20.0
+            )
         }
         .task(
             id: appEnvironment.realm
@@ -88,7 +94,7 @@ struct TaskBoardView: View {
         addTask.toggle()
     }
     
-    private func refreshList() {
+    private func refreshList() async {
         let tempSelect = selection
         guard let list = appEnvironment.realm?.objects(BoardsData.self),
               let myList = list.first else {
@@ -115,44 +121,51 @@ struct TaskBoardView: View {
                 })
             }
         })
+        addTask.toggle()
     }
     
     @ViewBuilder
     private func viewBoardHeader() -> some View {
         viewHeader()
-        viewSegmentBoard()
         viewSegmentStatus()
     }
     
     @ViewBuilder
     private func viewHeader() -> some View {
         HStack(
-            alignment: .center
+            alignment: .center,
+            spacing: 20.0
         ) {
             Text("Spritz Board")
                 .customTaskBoardText(
                     font: .largeTitle
                 )
-            Menu {
-                Button {
-                    showAddBoard.toggle()
+            HStack(
+                spacing: 15.0
+            ) {
+                Menu {
+                    Button {
+                        showAddBoard.toggle()
+                    } label: {
+                        Text("Create Board")
+                        Image(systemName: "clipboard")
+                    }
+                    TaskBoardAddTaskView(
+                        board: $selection,
+                        addTask: $addTask
+                    )
                 } label: {
-                    Text("Create Board")
-                    Image(systemName: "clipboard")
+                    Image(systemName: "plus.circle")
+                        .foregroundColor(.blue)
                 }
-                TaskBoardAddTaskView(
-                    board: $selection,
-                    addTask: $addTask
-                )
-            } label: {
-                Image(systemName: "list.bullet")
-                    .foregroundColor(.blue)
+                viewBoardMenu()
+                viewOrderTask()
             }
         }
     }
     
     @ViewBuilder
-    private func viewSegmentBoard() -> some View {
+    private func viewBoardMenu() -> some View {
         Menu {
             ForEach(
                 boardsData.boards,
@@ -163,11 +176,32 @@ struct TaskBoardView: View {
                 } label: {
                     Text(index.title)
                 }
-
             }
         } label: {
-            Text(selection.title)
-                .frame(maxWidth: .infinity)
+            Image(systemName: "list.bullet")
+                .foregroundColor(.blue)
+        }
+    }
+    
+    @ViewBuilder
+    private func viewOrderTask() -> some View {
+        Menu {
+            Button {
+                listOrderLatest = true
+                addTask.toggle()
+            } label: {
+                Text("Latest")
+                Image(systemName: "hourglass.tophalf.filled")
+            }
+            Button {
+                listOrderLatest = false
+                addTask.toggle()
+            } label: {
+                Text("Oldest")
+                Image(systemName: "hourglass.bottomhalf.filled")
+            }
+        } label: {
+            Image(systemName: "arrow.up.arrow.down")
                 .foregroundColor(.blue)
         }
     }
@@ -191,13 +225,23 @@ struct TaskBoardView: View {
     
     @ViewBuilder
     private func viewBoardTasks() -> some View {
-        if addTask == true || addTask == false {
+        if addTask == true || addTask == false, listOrderLatest {
             ForEach($selection.boardTasks.reversed()) { index in
                 if viewModel.segmentationSelection.rawValue == index.status.wrappedValue ||
                     viewModel.segmentationSelection == .all {
-                    TaskBoardCardCardView(
-                        title: index.title.wrappedValue,
-                        text: index.text.wrappedValue
+                    TaskBoardCardView(
+                        task: index,
+                        doneTask: $addTask
+                    )
+                }
+            }
+        } else {
+            ForEach($selection.boardTasks) { index in
+                if viewModel.segmentationSelection.rawValue == index.status.wrappedValue ||
+                    viewModel.segmentationSelection == .all {
+                    TaskBoardCardView(
+                        task: index,
+                        doneTask: $addTask
                     )
                 }
             }

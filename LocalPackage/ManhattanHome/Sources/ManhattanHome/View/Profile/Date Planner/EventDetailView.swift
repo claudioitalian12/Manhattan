@@ -61,7 +61,8 @@ struct EventDetail: View {
             if isEditing {
                 TextField(
                     "eventDetailView_profile_title_textfield".localized,
-                    text: $event.title
+                    text: $event.title,
+                    axis: .vertical
                 )
                 .font(.title2)
             } else {
