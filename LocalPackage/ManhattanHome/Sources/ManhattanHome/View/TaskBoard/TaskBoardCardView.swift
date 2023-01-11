@@ -68,7 +68,6 @@ struct TaskBoardDetailView: View {
                             axis: .vertical
                         )
                         .font(.title)
-                        .padding(.all, 10.0)
                         .multilineTextAlignment(.center)
                         Picker("", selection: $selectedState) {
                             ForEach(
