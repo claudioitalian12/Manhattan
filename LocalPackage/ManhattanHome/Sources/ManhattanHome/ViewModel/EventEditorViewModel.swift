@@ -9,13 +9,27 @@ import ManhattanCore
 import RealmSwift
 import SwiftUI
 
+// MARK: EventEditorViewModel
 public final class EventEditorViewModel: ManhattanViewModelProtocol {
+    /// editing Event.
     @ObservedRealmObject var editingEvent: Event = Event()
+    /// is deleted.
     @Published var isDeleted: Bool = false
+    /// event.
     @ObservedRealmObject var event: Event = Event()
+    /// is new.
     @Published var isNew: Bool = false
+    /// is editing.
     @Published var isEditing: Bool = false
-    
+    /**
+        Init.
+
+        - Parameter editingEvent: editing event.
+        - Parameter isDeleted: is deleted.
+        - Parameter event: event.
+        - Parameter isNew: is new.
+        - Parameter isEditing: is editing.
+    */
     init(
         editingEvent: Event = Event(),
         isDeleted: Bool = false,

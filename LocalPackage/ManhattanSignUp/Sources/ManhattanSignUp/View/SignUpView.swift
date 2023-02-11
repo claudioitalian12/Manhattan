@@ -8,11 +8,15 @@
 import SwiftUI
 import ManhattanCore
 
+// MARK: SignUpView
 public struct SignUpView: View {
+    /// appEnvironment.
     @Environment(\.appEnvironmentValue) var appEnvironment: AppEnvironment
+    /// view model.
     @ObservedObject var viewModel: SignUpViewModel
+    /// focused field.
     @FocusState private var focusedField: SignUpFieldType?
-    
+    /// body.
     public var body: some View {
         NavigationStack {
             contentScroll()
@@ -24,7 +28,7 @@ public struct SignUpView: View {
             self.hideKeyboard()
         }
     }
-    
+    /// content scroll.
     @ViewBuilder
     func contentScroll() -> some View {
         ScrollView {
@@ -69,7 +73,7 @@ public struct SignUpView: View {
                 )
         }
     }
-    
+    /// header title.
     @ViewBuilder
     func headerTitle() -> some View {
         VStack(
@@ -80,7 +84,7 @@ public struct SignUpView: View {
                 .signUpTextTitle(font: .title)
         }
     }
-    
+    /// name field.
     @ViewBuilder
     func nameField() -> some View {
         VStack(
@@ -101,7 +105,7 @@ public struct SignUpView: View {
             )
         }
     }
-    
+    /// password field.
     @ViewBuilder
     func passwordField() -> some View {
         VStack(
@@ -122,7 +126,7 @@ public struct SignUpView: View {
             )
         }
     }
-    
+    /// signup button.
     @ViewBuilder
     func signUpButton() -> some View {
         VStack(
@@ -153,8 +157,9 @@ public struct SignUpView: View {
         }
     }
 }
-
+// MARK: SignUpView Extension
 private extension SignUpView {
+    /// did on submit.
     func didOnSubmit() async {
         switch focusedField {
         case .username:

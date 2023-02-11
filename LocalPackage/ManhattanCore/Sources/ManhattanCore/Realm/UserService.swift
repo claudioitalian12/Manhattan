@@ -9,35 +9,69 @@ import RealmSwift
 import SwiftUI
 import OSLog
 
-public protocol UserService: AnyObject {
+// MARK: UserServiceProtocol
+public protocol UserServiceProtocol: AnyObject {
+    /**
+        Create user with realm.
+
+        - Parameter app: realm app.
+        - Parameter email: email.
+        - Parameter password: password.
+    */
     func createUser(
         app: RealmSwift.App,
         email: String,
         password: String
     ) async throws
-    
+    /**
+        Login user with realm,.
+
+        - Parameter app: realm app.
+        - Parameter email: email.
+        - Parameter password: password.
+    */
     func loginUser(
         app: RealmSwift.App,
         email: String,
         password: String
     ) async throws
-    
+    /**
+        Delete user with realm,.
+
+        - Parameter app: realm app.
+    */
     func delete(
         app: RealmSwift.App
     ) async throws
-    
+    /**
+        Logout user with realm,.
+
+        - Parameter app: realm app.
+    */
     func logout(
         app: RealmSwift.App
     ) async throws
     
+    /**
+        Subscription flexible sync,.
+
+        - Parameter app: realm app.
+    */
     func subscriptionFlexbleSync(
         app: RealmSwift.App
     ) async throws -> Realm?
 }
-
-public final actor RealmUserService: UserService {
+// MARK: RealmUserService
+public final actor RealmUserService: UserServiceProtocol {
+    /// init.
     public init() {}
-    
+    /**
+        Create user with realm.
+
+        - Parameter app: realm app.
+        - Parameter email: email.
+        - Parameter password: password.
+    */
     public func createUser(
         app: RealmSwift.App,
         email: String,
@@ -61,7 +95,13 @@ public final actor RealmUserService: UserService {
             throw error
         }
     }
-    
+    /**
+        Login user with realm,.
+
+        - Parameter app: realm app.
+        - Parameter email: email.
+        - Parameter password: password.
+    */
     public func loginUser(
         app: RealmSwift.App,
         email: String,
@@ -93,7 +133,11 @@ public final actor RealmUserService: UserService {
             throw error
         }
     }
-    
+    /**
+        Delete user with realm,.
+
+        - Parameter app: realm app.
+    */
     public func delete(
         app: RealmSwift.App
     ) async throws {
@@ -107,7 +151,11 @@ public final actor RealmUserService: UserService {
             throw error
         }
     }
-    
+    /**
+        Logout user with realm,.
+
+        - Parameter app: realm app.
+    */
     public func logout(
         app: RealmSwift.App
     ) async throws {
@@ -121,7 +169,11 @@ public final actor RealmUserService: UserService {
             throw error
         }
     }
-    
+    /**
+        Subscription flexible sync,.
+
+        - Parameter app: realm app.
+    */
     public func subscriptionFlexbleSync(
         app: RealmSwift.App
     ) async throws -> Realm? {

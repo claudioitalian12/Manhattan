@@ -7,20 +7,31 @@
 
 import SwiftUI
 
+// MARK: ColorOptions
 public enum ColorOptions: String, CaseIterable {
+    /// raw value.
     public typealias RawValue = String
-    
+    /// primary.
     case primary = "primary"
+    /// gray.
     case gray = "gray"
+    /// red.
     case red = "red"
+    /// orange.
     case orange = "orange"
+    /// yellow.
     case yellow = "yellow"
+    /// green.
     case green = "green"
+    /// mint.
     case mint = "mint"
+    /// cyan.
     case cyan = "cyan"
+    /// indigo.
     case indigo = "indigo"
+    /// purple.
     case purple = "purple"
-    
+    /// color.
     public var color: Color {
         switch self {
         case .primary:
@@ -45,7 +56,7 @@ public enum ColorOptions: String, CaseIterable {
             return .purple
         }
     }
-    
+    /// random color.
     public static var randomColor: Color {
         if let element = ColorOptions.allCases.randomElement() {
             return element.color

@@ -10,17 +10,31 @@ import WeatherKit
 import SwiftUI
 import CoreML
 
+// MARK: WhConsumptionViewModelProtocol
 protocol WhConsumptionViewModelProtocol: ManhattanViewModelProtocol {
+    /// weather Service.
     var weatherService: WeatherAppleService { get set }
+    /// consumption Value.
     var consumptionValue: String { get set }
+    /// predictConsumption.
     func predictConsumption() throws
 }
 
+// MARK: WhConsumptionViewModel
 public final class WhConsumptionViewModel: WhConsumptionViewModelProtocol {
+    /// dateFormat.
     private let dateFormat: String
+    /// weatherService.
     var weatherService: WeatherAppleService
+    /// consumptionValue.
     @Published var consumptionValue: String
-    
+    /**
+        Init.
+
+        - Parameter dateFormat: date format.
+        - Parameter weatherService: weather service.
+        - Parameter consumptionValue: consumption value.
+    */
     init(
         dateFormat: String,
         weatherService: WeatherAppleService,
@@ -30,7 +44,7 @@ public final class WhConsumptionViewModel: WhConsumptionViewModelProtocol {
         self.weatherService = weatherService
         self.consumptionValue = consumptionValue
     }
-
+    /// predict consumption.
     public func predictConsumption() throws {
         guard let currentWeather = weatherService.weather?.currentWeather else {
             return
@@ -73,14 +87,23 @@ public final class WhConsumptionViewModel: WhConsumptionViewModelProtocol {
             throw error
         }
     }
-    
+    /**
+        Calendar is date in weekend.
+
+        - Parameter calendar: calendar.
+        - Parameter date: date.
+    */
     private func calendarIsDateInWeekend(
         calendar: Calendar,
         date: Date
     ) -> String {
         calendar.isDateInWeekend(date) ? "weekend":"weekday"
     }
-    
+    /**
+        Consumption format.
+
+        - Parameter value: value.
+    */
     private func consumptionFormat(
         value: Double
     ) -> String {

@@ -10,13 +10,27 @@ import CoreLocation
 import SwiftUI
 import OSLog
 
+// MARK: WeatherAppleService
 final class WeatherAppleService: ObservableObject {
+    /// weather service.
     @Published var weatherService: WeatherService?
+    /// weather.
     @Published var weather: Weather?
+    /// hour weather.
     @Published var hourWeather: [HourWeather]?
+    /// day weather.
     @Published var dayWeather: [DayWeather]?
+    /// temperature.
     @Published var temperature: String?
-    
+    /**
+        Init.
+
+        - Parameter weatherService: weather service.
+        - Parameter weather: weather.
+        - Parameter hourWeather: hour weather.
+        - Parameter dayWeather: day weather.
+        - Parameter temperature: temperature.
+    */
     init(
         weatherService: WeatherService? = nil,
         weather: Weather? = nil,
@@ -30,7 +44,11 @@ final class WeatherAppleService: ObservableObject {
         self.dayWeather = dayWeather
         self.temperature = temperature
     }
-    
+    /**
+        Get Weather for location.
+
+        - Parameter location: location.
+    */
     @MainActor
     func getWeatherForLocation(
         location: CLLocation
@@ -55,7 +73,11 @@ final class WeatherAppleService: ObservableObject {
             )
         }
     }
-    
+    /**
+        Get Hourly Weather Data.
+
+        - Parameter weather: weather.
+    */
     func getHourlyWeatherData(
         weather: Weather?
     ) -> [HourWeather] {
@@ -69,13 +91,21 @@ final class WeatherAppleService: ObservableObject {
             return []
         }
     }
-    
+    /**
+        Get Daily Forecast.
+
+        - Parameter weather: weather.
+    */
     func getDailyForecast(
         weather: Weather?
     ) -> [DayWeather] {
         weather?.dailyForecast.forecast ?? []
     }
-    
+    /**
+        Get Weather temperature format.
+
+        - Parameter weather: weather.
+    */
     func getWeatherTemperatureFormatted(
         weather: Weather?
     ) -> String {

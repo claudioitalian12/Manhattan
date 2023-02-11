@@ -9,11 +9,15 @@ import ManhattanCore
 import RealmSwift
 import SwiftUI
 
+// MARK: TaskBoardAddTaskView
 struct TaskBoardAddTaskView: View {
+    /// app environment.
     @Environment(\.appEnvironmentValue) var appEnvironment: AppEnvironment
+    /// board.
     @Binding var board: Board
+    /// add task.
     @Binding var addTask: Bool
-    
+    /// body.
     var body: some View {
         Button {
             let boardTask = BoardTask(

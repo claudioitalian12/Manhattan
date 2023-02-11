@@ -11,11 +11,15 @@ import RealmSwift
 import WeatherKit
 import SwiftUI
 
+// MARK: HomeView
 struct HomeView: View {
+    /// app Environment.
     @Environment(\.appEnvironmentValue) var appEnvironment: AppEnvironment
+    /// view model.
     @ObservedObject var viewModel: HomeViewModel
+    /// is loading.
     @State var isLoading: Bool = true
-    
+    /// body.
     var body: some View {
         NavigationStack {
             TabView {
@@ -43,7 +47,7 @@ struct HomeView: View {
             }
         }
     }
-    
+    /// home Ipad.
     @ViewBuilder
     private func homeIpad() -> some View {
         HStack {
@@ -57,7 +61,7 @@ struct HomeView: View {
         }
         .customHStackHome()
     }
-    
+    /// home Iphone.
     @ViewBuilder
     private func homeIphone() -> some View {
         WeatherView()

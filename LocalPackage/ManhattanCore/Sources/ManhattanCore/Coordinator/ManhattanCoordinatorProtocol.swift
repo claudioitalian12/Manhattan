@@ -7,8 +7,12 @@
 
 import SwiftUI
 
+// MARK: ManhattanCoordinatorProtocol
 public protocol ManhattanCoordinatorProtocol: AnyObject {
+    /// parent gateway
     var parentGateway: (any ManhattanGatewayProtocol)? { get set }
+    /// child coordinator
     var childCoordinator: [any ManhattanCoordinatorProtocol]? { get set }
+    /// start
     func start() -> AnyView
 }

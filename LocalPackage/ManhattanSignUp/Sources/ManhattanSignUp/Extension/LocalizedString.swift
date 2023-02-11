@@ -7,7 +7,9 @@
 
 import Foundation
 
+// MARK: String
 extension String {
+    /// localized
     var localized: String {
         NSLocalizedString(
             self,

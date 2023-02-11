@@ -9,11 +9,15 @@ import ManhattanCore
 import WeatherKit
 import SwiftUI
 
+// MARK: TenDayForcastView
 struct TenDayForcastView: View {
+    /// view model.
     @StateObject var viewModel: WeatherAppleService
+    /// opacity value.
     private let opacityValue: CGFloat = 0.5
+    /// edge padding.
     private let edgePadding: CGFloat = 0.5
-    
+    /// body.
     var body: some View {
         VStack(
             alignment: .leading
@@ -35,7 +39,11 @@ struct TenDayForcastView: View {
         }
         .customVStackTenDayForecastView()
     }
-    
+    /**
+        Section Element.
+
+        - Parameter dailyWeather: daily weather.
+    */
     @ViewBuilder
     private func sectionElement(
         dailyWeather: DayWeather

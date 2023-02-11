@@ -8,7 +8,9 @@
 import SwiftUI
 
 #if canImport(UIKit)
+// MARK: View
 public extension View {
+    /// hide keyboard.
     func hideKeyboard() {
         UIApplication.shared.sendAction(
             #selector(

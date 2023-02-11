@@ -9,6 +9,7 @@ import ManhattanCore
 import RealmSwift
 import SwiftUI
 
+// MARK: EventSectionTitleDateViewModifier
 struct EventSectionTitleDateViewModifier: ViewModifier {
     
     func body(
@@ -29,6 +30,7 @@ extension Text {
     }
 }
 
+// MARK: EventListRowViewModifier
 struct EventListRowViewModifier: ViewModifier {
     @Binding var eventData: EventData
     @Binding var selected: Event?
@@ -81,6 +83,7 @@ extension View {
     }
 }
 
+// MARK: EventListVStackViewModifier
 struct EventListVStackViewModifier: ViewModifier {
     @Binding var eventData: EventData
     @Binding var newEvent: Event

@@ -8,11 +8,15 @@
 import WeatherKit
 import SwiftUI
 
+// MARK: HourlyForcastView
 struct HourlyForcastView: View {
+    /// view model.
     @StateObject var viewModel: WeatherAppleService
+    /// opacity value.
     private let opacityValue = 0.5
+    /// spacing value.
     private let spacingValue = 20.0
-    
+    /// body.
     var body: some View {
         VStack(
             alignment: .leading
@@ -24,7 +28,7 @@ struct HourlyForcastView: View {
         }
         .customVStackHourlyForcastView()
     }
-    
+    /// hourly section.
     @ViewBuilder
     private func hourlySection() -> some View {
         ScrollView(.horizontal) {

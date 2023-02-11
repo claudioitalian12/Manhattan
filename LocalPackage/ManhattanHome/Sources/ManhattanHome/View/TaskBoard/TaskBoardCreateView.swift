@@ -9,13 +9,19 @@ import ManhattanCore
 import RealmSwift
 import SwiftUI
 
+// MARK: TaskBoardCreateView
 struct TaskBoardCreateView: View {
+    /// app environment.
     @Environment(\.appEnvironmentValue) var appEnvironment: AppEnvironment
+    /// board.
     @ObservedRealmObject var board: Board = Board()
+    /// selection.
     @Binding var selection: Board
+    /// show add board.
     @Binding var showAddBoard: Bool
+    /// users id.
     @State var usersID: [String] = []
-    
+    /// body.
     var body: some View {
         NavigationStack {
             boardList()
@@ -39,7 +45,7 @@ struct TaskBoardCreateView: View {
                 }
         }
     }
-    
+    /// board list.
     @ViewBuilder
     private func boardList() -> some View {
         List {
@@ -66,7 +72,7 @@ struct TaskBoardCreateView: View {
             }
         }
     }
-    
+    /// did tap done.
     private func didTapDone() {
         board.owner_id = appEnvironment.getUserID()
         board.shared_id.append(appEnvironment.getUserID() ?? "")

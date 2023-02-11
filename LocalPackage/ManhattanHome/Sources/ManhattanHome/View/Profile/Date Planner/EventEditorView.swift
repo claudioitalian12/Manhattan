@@ -9,16 +9,21 @@ import ManhattanCore
 import RealmSwift
 import SwiftUI
 
+// MARK: EventEditor
 struct EventEditor: View {
+    /// app environment.
     @Environment(\.appEnvironmentValue) private var appEnvironment: AppEnvironment
+    /// view model.
     @ObservedObject var viewModel: EventEditorViewModel
+    /// event data.
     @Binding var eventData: EventData
+    /// is presented.
     @Binding var isPresented: Bool
-    
+    /// is event deleted.
     private var isEventDeleted: Bool {
         !eventData.exists(viewModel.event) && !viewModel.isNew && viewModel.isDeleted
     }
-
+    /// body.
     var body: some View {
         contentStack()
         .task {
@@ -43,7 +48,7 @@ struct EventEditor: View {
             }
         }
     }
-    
+    /// content stack.
     @ViewBuilder
     func contentStack() -> some View {
         VStack {
@@ -68,14 +73,14 @@ struct EventEditor: View {
             }
         }
     }
-    
+    /// cancel button.
     @ViewBuilder
     func cancelButton() -> some View {
         Button("eventEditorView_profile_navigation_remove_button".localized) {
             isPresented.toggle()
         }
     }
-    
+    /// right button.
     @ViewBuilder
     func rightButton() -> some View {
         Button {
@@ -108,7 +113,7 @@ struct EventEditor: View {
             Text(viewModel.isNew ? "eventEditorView_profile_navigation_add_button".localized : (viewModel.isEditing ? "eventEditorView_profile_navigation_done_button".localized : "eventEditorView_profile_navigation_edit_button".localized))
         }
     }
-    
+    /// delete button.
     @ViewBuilder
     func deleteButton() -> some View {
         Button(

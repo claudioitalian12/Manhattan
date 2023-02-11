@@ -10,32 +10,35 @@ import ManhattanLogin
 import ManhattanCore
 import SwiftUI
 
+// MARK: ManhattanApp
 @main
 struct ManhattanApp: App {
-    let gatewatFactory = ManhattanGatewayFactory()
+    /// gateway.
+    let gatewayFactory = ManhattanGatewayFactory()
+    /// app environment.
     @ObservedObject var appEnvironment = AppEnvironment.defaultValue
-
+    /// init..
     init() { }
-    
+    /// body.
     var body: some Scene {
         setupManhattanView()
     }
-    
+    /// setupManhattanView.
     private func setupManhattanView() -> some Scene {
         WindowGroup {
             getAppView()
         }
     }
-    
+    /// getAppView.
     @ViewBuilder
     private func getAppView() -> some View {
         switch appEnvironment.gateway {
         case .login:
-            gatewatFactory.getManhattanLoginGateway().start()
+            gatewayFactory.getManhattanLoginGateway().start()
         case .signUp:
-            gatewatFactory.getManhattanSignUpGateway().start()
+            gatewayFactory.getManhattanSignUpGateway().start()
         case .home:
-            gatewatFactory.getManhattanHomeGateway().start()
+            gatewayFactory.getManhattanHomeGateway().start()
         }
     }
 }

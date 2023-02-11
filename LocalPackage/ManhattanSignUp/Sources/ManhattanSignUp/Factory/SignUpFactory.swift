@@ -7,9 +7,15 @@
 
 import ManhattanCore
 
+// MARK: SignUpFactory
 struct SignUpFactory {
+    /**
+        Get signup view model.
+
+        - Parameter userService: user service.
+    */
     func getSignUpViewModel(
-        userService: UserService?
+        userService: UserServiceProtocol?
     ) -> SignUpViewModel {
         SignUpViewModel(
             userService: userService

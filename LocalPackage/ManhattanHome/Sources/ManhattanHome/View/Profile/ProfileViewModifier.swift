@@ -10,11 +10,15 @@ import SwiftUI
 
 // MARK: ProfileScrollViewModifier
 struct ProfileScrollViewModifier: ViewModifier {
+    /// app Environment.
     @Environment(\.appEnvironmentValue) var appEnvironment: AppEnvironment
+    /// is loading.
     @Binding var isLoading: Bool
+    /// is alert hidden.
     @Binding var isAlertHidden: Bool
+    /// error message.
     @Binding var errorMessage: String
-    
+    /// body.
     func body(
         content: Content
     ) -> some View {
@@ -79,6 +83,7 @@ extension Image {
     }
 }
 
+// MARK: ProfileMenuTextButtonModifier
 struct ProfileMenuTextButtonModifier: ViewModifier {
     
     func body(
@@ -105,6 +110,7 @@ extension Text {
     }
 }
 
+// MARK: ProfileDatePickerModifier
 struct ProfileDatePickerModifier: ViewModifier {
     
     func body(
@@ -125,6 +131,7 @@ extension DatePicker {
     }
 }
 
+// MARK: ProfileContentVStackModifier
 struct ProfileContentVStackModifier: ViewModifier {
     
     func body(

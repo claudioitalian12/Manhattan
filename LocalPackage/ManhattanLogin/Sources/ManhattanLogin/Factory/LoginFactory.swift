@@ -7,10 +7,15 @@
 
 import ManhattanCore
 
+// MARK: LoginFactory
 final class LoginFactory {
+    /**
+        Get login view model.
 
+        - Parameter userService: user service.
+    */
     func getLoginViewModel(
-        userService: UserService?
+        userService: UserServiceProtocol?
     ) -> LoginViewModel {
         LoginViewModel(
             userService: userService

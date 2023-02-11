@@ -8,10 +8,19 @@
 import ManhattanCore
 import SwiftUI
 
+// MARK: TaskBoardViewModel
 public final class TaskBoardViewModel: ManhattanViewModelProtocol {
+    /// is loading.
     @Published var isLoading = true
+    /// segmentation selection.
     @Published var segmentationSelection: TaskSection = .all
+    /**
+        Init.
 
+        - Parameter homeShowOverlay: home show overlay.
+        - Parameter isLoading: is loading.
+        - Parameter segmentationSelection: segmentation selection.
+    */
     init(
         homeShowOverlay: Bool = false,
         isLoading: Bool = true,

@@ -7,7 +7,15 @@
 
 import Foundation
 
+// MARK: Extension Date
 extension Date {
+    /**
+        Create Date From.
+
+        - Parameter month: month.
+        - Parameter day: day.
+        - Parameter year: year.
+    */
     static func from(
         month: Int,
         day: Int,
@@ -29,7 +37,11 @@ extension Date {
             return Date()
         }
     }
+    /**
+        Rounded hourses from now.
 
+        - Parameter hours: hours.
+    */
     static func roundedHoursFromNow(
         _ hours: Double
     ) -> Date {

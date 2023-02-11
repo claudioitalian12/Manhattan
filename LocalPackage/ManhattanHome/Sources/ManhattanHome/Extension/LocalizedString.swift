@@ -7,7 +7,9 @@
 
 import SwiftUI
 
+// MARK: Extension String
 extension String {
+    /// var localized
     var localized: String {
         NSLocalizedString(
             self,

@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// MARK: TaskBoardTextViewModifier
 struct TaskBoardTextViewModifier: ViewModifier {
     let font: Font?
     
@@ -29,6 +30,7 @@ extension Text {
     }
 }
 
+// MARK: TaskBoardPickerViewModifier
 struct TaskBoardPickerViewModifier: ViewModifier {
     
     func body(
@@ -49,6 +51,7 @@ extension Picker {
     }
 }
 
+// MARK: TaskBoardScrollViewViewModifier
 struct TaskBoardScrollViewViewModifier: ViewModifier {
     
     func body(
@@ -70,6 +73,7 @@ extension ScrollView {
     }
 }
 
+// MARK: TaskBoardCardTitleTextViewModifier
 struct TaskBoardCardTitleTextViewModifier: ViewModifier {
     
     func body(
@@ -90,6 +94,7 @@ extension Text {
     }
 }
 
+// MARK: TaskBoardCardSubtitleTextViewModifier
 struct TaskBoardCardSubtitleTextViewModifier: ViewModifier {
     
     func body(
@@ -109,6 +114,7 @@ extension Text {
     }
 }
 
+// MARK: TaskBoardCardLazyVStackViewModifier
 struct TaskBoardCardLazyVStackViewModifier: ViewModifier {
     
     func body(
@@ -128,6 +134,7 @@ extension LazyVStack {
     }
 }
 
+// MARK: RoundedRectangle
 extension RoundedRectangle {
     func customTaskBoardCardZStack() -> some View {
         self.fill(.blue)

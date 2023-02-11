@@ -9,13 +9,19 @@ import ManhattanCore
 import RealmSwift
 import SwiftUI
 
+// MARK: EventList
 struct EventList: View {
+    /// app environment.
     @Environment(\.appEnvironmentValue) var appEnvironment: AppEnvironment
+    /// view model.
     @StateObject var viewModel: EventListViewModel = EventListViewModel()
+    /// date.
     @Binding var date: Date
+    /// is presented new.
     @State private var isPresentedNew: Bool = false
+    /// is presented edit.
     @State private var isPresentedEdit: Bool = false
-    
+    /// body.
     var body: some View {
         VStack (
             alignment: .center,
@@ -37,7 +43,7 @@ struct EventList: View {
             )
         }
     }
-    
+    /// list header.
     @ViewBuilder
     private func listHeader() -> some View {
         HStack() {
@@ -60,7 +66,7 @@ struct EventList: View {
             }
         }
     }
-    
+    /// list sections.
     @ViewBuilder
     private func listSections() -> some View {
         VStack(
@@ -77,7 +83,11 @@ struct EventList: View {
             }
         }
     }
-    
+    /**
+        List rows.
+
+        - Parameter listRows: list rows.
+    */
     @ViewBuilder
     private func listRows(
         period: Period

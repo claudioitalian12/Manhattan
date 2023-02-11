@@ -9,9 +9,11 @@ import ManhattanCore
 import RealmSwift
 import SwiftUI
 
+// MARK: EventRow
 struct EventRow: View {
+    /// event.
     @ObservedRealmObject var event: Event
-    
+    /// body.
     var body: some View {
         HStack {
             imageRow()
@@ -22,7 +24,7 @@ struct EventRow: View {
             remainingTaskCount: event.remainingTaskCount
         )
     }
-    
+    /// image row.
     @ViewBuilder
     func imageRow() -> some View {
         Image(
@@ -32,7 +34,7 @@ struct EventRow: View {
             color: event.colorOption
         )
     }
-    
+    /// stack text.
     @ViewBuilder
     func stackText() -> some View {
         VStack(

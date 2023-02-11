@@ -10,15 +10,25 @@ import RealmSwift
 import SwiftUI
 import OSLog
 
+// MARK: EventData
 final class EventData: ObservableObject {
+    /// events
     @ObservedRealmObject var events: RealmSwift.List<Event> = RealmSwift.List<Event>()
-        
+    /**
+        Init.
+
+        - Parameter events: list.
+    */
     init(
         events: RealmSwift.List<ManhattanCore.Event> = RealmSwift.List<Event>()
     ) {
         self.events = events
     }
-    
+    /**
+        Set Events List.
+
+        - Parameter realm: realm.
+    */
     func setEventsList(
         realm: Realm?
     ) {
@@ -27,7 +37,12 @@ final class EventData: ObservableObject {
             self.events.append(objectsIn: eventResult)
         }
     }
-    
+    /**
+        Delete Event.
+
+        - Parameter realm: realm.
+        - Parameter event: event.
+    */
     @MainActor
     func delete(
         realm: Realm?,
@@ -54,7 +69,12 @@ final class EventData: ObservableObject {
             )
         }
     }
-    
+    /**
+        Add Event.
+
+        - Parameter realm: realm.
+        - Parameter event: event.
+    */
     @MainActor
     func add(
         realm: Realm?,
@@ -110,13 +130,21 @@ final class EventData: ObservableObject {
             }
         }
     }
-    
+    /**
+        Exists.
+
+        - Parameter event: event.
+    */
     func exists(
         _ event: Event
     ) -> Bool {
         events.contains(event)
     }
-    
+    /**
+        Sorted Events.
+
+        - Parameter period: period.
+    */
     func sortedEvents(
         period: Period
     ) -> RealmSwift.List<Event> {

@@ -9,12 +9,17 @@ import ManhattanCore
 import RealmSwift
 import SwiftUI
 
+// MARK: EventDetail
 struct EventDetail: View {
+    /// app environment.
     @Environment(\.appEnvironmentValue) var appEnvironment: AppEnvironment
+    /// event.
     @ObservedRealmObject var event: Event
+    /// is editing.
     @Binding var isEditing: Bool
+    /// is picking symbol.
     @State private var isPickingSymbol = false
-    
+    /// body.
     var body: some View {
         List {
             taskTitle()
@@ -39,7 +44,7 @@ struct EventDetail: View {
             )
         }
     }
-    
+    /// task title.
     @ViewBuilder
     func taskTitle() -> some View {
         HStack {
@@ -72,7 +77,7 @@ struct EventDetail: View {
             }
         }
     }
-    
+    /// task date.
     @ViewBuilder
     func taskDate() -> some View {
         if isEditing {
@@ -89,7 +94,7 @@ struct EventDetail: View {
             .listRowSeparator(.hidden)
         }
     }
-    
+    /// task rows.
     @ViewBuilder
     func taskRows() -> some View {
         ForEach(event.tasks) { eventTask in
@@ -104,7 +109,7 @@ struct EventDetail: View {
             }
         )
     }
-    
+    /// add task button.
     @ViewBuilder
     func addTaskButton() -> some View {
         Button {
@@ -119,7 +124,11 @@ struct EventDetail: View {
         }
         .buttonStyle(.borderless)
     }
-    
+    /**
+        Delete Element.
+
+        - Parameter indexSet: index set.
+    */
     @MainActor
     private func deleteElement(
         indexSet: IndexSet
@@ -136,7 +145,7 @@ struct EventDetail: View {
             )
         }
     }
-    
+    /// write element.
     @MainActor
     private func writeElement() {
                 guard let thaw = event.tasks.realm?.thaw() else {

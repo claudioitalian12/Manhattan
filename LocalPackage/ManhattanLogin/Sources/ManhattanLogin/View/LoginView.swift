@@ -8,12 +8,17 @@
 import ManhattanCore
 import SwiftUI
 
+// MARK: LoginView
 public struct LoginView: View {
+    /// appEnvironment.
     @Environment(\.appEnvironmentValue) var appEnvironment: AppEnvironment
+    /// viewModel.
     @ObservedObject var viewModel: LoginViewModel
+    /// focused field.
     @FocusState private var focusedField: LoginFieldType?
+    /// spacing vstack.
     private let spacingVStack = 20.0
-    
+    /// body.
     public var body: some View {
         NavigationStack {
             ScrollView {
@@ -62,7 +67,7 @@ public struct LoginView: View {
             self.hideKeyboard()
         }
     }
-    
+    /// header.
     @ViewBuilder
     func header() -> some View {
         Text(
@@ -82,7 +87,7 @@ public struct LoginView: View {
         )
         .loginImage()
     }
-    
+    /// fields.
     @ViewBuilder
     func fields() -> some View {
         VStack(
@@ -128,7 +133,7 @@ public struct LoginView: View {
             }
         }
     }
-    
+    /// buttons.
     @ViewBuilder
     func buttons() -> some View {
         VStack(
@@ -160,7 +165,7 @@ public struct LoginView: View {
             }
         }
     }
-    
+    /// didOnSubmit.
     private func didOnSubmit() async {
         switch focusedField {
         case .username:

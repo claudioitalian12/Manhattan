@@ -10,8 +10,11 @@ import CoreLocation
 import WeatherKit
 import SwiftUI
 
+// MARK: WeatherView
 struct WeatherView: View {
+    /// app environment.
     @Environment(\.appEnvironmentValue) var appEnvironment: AppEnvironment
+    /// view model.
     @StateObject var viewModel: WeatherViewModel = WeatherViewModel(
         locationService: LocationService(
             locationService: CLLocationManager()
@@ -21,16 +24,21 @@ struct WeatherView: View {
             weather: nil
         )
     )
+    /// is loading.
     @State private var isLoading = true
-    
+    /// body.
     var body: some View {
         ScrollView(
             showsIndicators: false
         ) {
             LazyVStack {
-                Text(viewModel.locationService.currentCityName ?? "")
-                    .customTextWeatherView()
-                Text(viewModel.weatherService.temperature ?? "")
+                Text(
+                    viewModel.locationService.currentCityName ?? ""
+                )
+                .customTextWeatherView()
+                Text(
+                    viewModel.weatherService.temperature ?? ""
+                )
                 weatherViewSubView(
                     weatherService: viewModel.weatherService
                 )
@@ -57,7 +65,11 @@ struct WeatherView: View {
             }
         }
     }
-    
+    /**
+        Weather view sub view.
+
+        - Parameter weatherService: weather service.
+    */
     @ViewBuilder
     private func weatherViewSubView(
         weatherService: WeatherAppleService
@@ -75,7 +87,7 @@ struct WeatherView: View {
             viewModel: weatherService
         )
     }
-    
+    /// load Location.
     private func loadLocation() async throws {
         do {
             try await viewModel.getLocation()
@@ -83,7 +95,7 @@ struct WeatherView: View {
             throw error
         }
     }
-    
+    /// load Weather.
     private func loadWeather() async throws {
         do {
             try await viewModel.getWeatherForLocation()

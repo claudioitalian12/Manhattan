@@ -5,10 +5,13 @@
 //  Created by Claudio Cavalli on 10/12/22.
 //
 
+// MARK: SignUpButtonType
 enum SignUpButtonType: CaseIterable {
+    /// home
     case home
+    /// login
     case login
-    
+    /// rawValue
     var rawValue: String {
         switch self {
         case .home:

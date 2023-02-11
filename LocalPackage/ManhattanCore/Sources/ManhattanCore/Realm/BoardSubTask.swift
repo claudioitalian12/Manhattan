@@ -8,16 +8,32 @@
 import Foundation
 import RealmSwift
 
+// MARK: BoardSubTask
 public class BoardSubTask: Object {
+    /// _id object.
     @Persisted(primaryKey: true) public var _id: ObjectId
+    /// board task id.
     @Persisted public var boardTask_id: ObjectId
+    /// is complete.
     @Persisted public var isComplete: Bool = false
+    /// owner id.
     @Persisted public var owner_id: String?
+    /// shared id.
     @Persisted public var shared_id: List<String>
+    /// text.
     @Persisted public var text: String = ""
-    
+    /// init.
     override init() {}
-    
+    /**
+        Init BoardSubTask with parameters.
+
+        - Parameter _id: primary key object id.
+        - Parameter boardTask_id: boards id.
+        - Parameter isComplete: is complete.
+        - Parameter owner_id: owner id.
+        - Parameter shared_id: shared id.
+        - Parameter text:text.
+    */
     public init(
         _id: ObjectId = ObjectId.generate(),
         boardTask_id: ObjectId,

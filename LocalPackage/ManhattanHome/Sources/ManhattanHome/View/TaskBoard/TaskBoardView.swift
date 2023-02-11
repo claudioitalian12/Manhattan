@@ -9,17 +9,29 @@ import ManhattanCore
 import RealmSwift
 import SwiftUI
 
+// MARK: TaskBoardTextViewModifier
 struct TaskBoardView: View {
+    /// app environment.
     @Environment(\.appEnvironmentValue) var appEnvironment: AppEnvironment
+    /// view model.
     @ObservedObject var viewModel: TaskBoardViewModel
+    /// boards data.
     @StateRealmObject var boardsData: BoardsData = BoardsData()
+    /// selection.
     @State private var selection = Board()
+    /// show add board.
     @State private var showAddBoard = false
-
+    /// add task.
     @State private var addTask = false
+    /// show detail.
     @State private var showDetail = false
+    /// list order latest.
     @State private var listOrderLatest = true
-    
+    /**
+        Init.
+
+        - Parameter viewModel: view model.
+    */
     init(
         viewModel: TaskBoardViewModel
     ){
@@ -36,7 +48,7 @@ struct TaskBoardView: View {
         )
         UISegmentedControl.appearance().selectedSegmentTintColor = UIColor.white.withAlphaComponent(0.2)
     }
-    
+    /// body.
     var body: some View {
         VStack {
             viewBoardHeader()
@@ -67,7 +79,7 @@ struct TaskBoardView: View {
             )
         }
     }
-    
+    /// load boards.
     private func loadBoards() {
         guard let list = appEnvironment.realm?.objects(BoardsData.self),
               let myList = list.first else {
@@ -93,7 +105,7 @@ struct TaskBoardView: View {
         })
         addTask.toggle()
     }
-    
+    /// refresh list.
     private func refreshList() async {
         let tempSelect = selection
         guard let list = appEnvironment.realm?.objects(BoardsData.self),
@@ -123,13 +135,13 @@ struct TaskBoardView: View {
         })
         addTask.toggle()
     }
-    
+    /// view board header.
     @ViewBuilder
     private func viewBoardHeader() -> some View {
         viewHeader()
         viewSegmentStatus()
     }
-    
+    /// view header.
     @ViewBuilder
     private func viewHeader() -> some View {
         HStack(
@@ -163,7 +175,7 @@ struct TaskBoardView: View {
             }
         }
     }
-    
+    /// view board menu.
     @ViewBuilder
     private func viewBoardMenu() -> some View {
         Menu {
@@ -182,7 +194,7 @@ struct TaskBoardView: View {
                 .foregroundColor(.blue)
         }
     }
-    
+    /// view order task.
     @ViewBuilder
     private func viewOrderTask() -> some View {
         Menu {
@@ -205,7 +217,7 @@ struct TaskBoardView: View {
                 .foregroundColor(.blue)
         }
     }
-    
+    /// view segment status.
     @ViewBuilder
     private func viewSegmentStatus() -> some View {
         Picker(
@@ -222,7 +234,7 @@ struct TaskBoardView: View {
         }
         .customTaskBoardPicker()
     }
-    
+    /// view board tasks.
     @ViewBuilder
     private func viewBoardTasks() -> some View {
         if addTask == true || addTask == false, listOrderLatest {

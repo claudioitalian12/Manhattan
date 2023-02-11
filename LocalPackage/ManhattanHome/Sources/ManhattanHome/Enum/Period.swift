@@ -7,12 +7,17 @@
 
 import Foundation
 
+// MARK: Period
 enum Period: CaseIterable, Identifiable {
+    /// next saven days.
     case nextSevenDays
+    /// next thirty days.
     case nextThirtyDays
+    /// future.
     case future
+    /// past.
     case past
-    
+    /// id.
     var id: String {
         switch self {
         case .nextSevenDays:
@@ -25,7 +30,7 @@ enum Period: CaseIterable, Identifiable {
             return "profileView_profile_list_section_past".localized
         }
     }
-    
+    /// name.
     var name: String {
         switch self {
         case .nextSevenDays:

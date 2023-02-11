@@ -10,17 +10,31 @@ import WeatherKit
 import SwiftUI
 import OSLog
 
+// MARK: WeatherViewModelProtocol
 protocol WeatherViewModelProtocol: ManhattanViewModelProtocol {
+    /// get weather for location.
     func getWeatherForLocation() async throws
+    /**
+        Get Consumption view model.
+
+        - Parameter weatherService: weather service.
+    */
     func getConsumptionViewModel(
         weatherService: WeatherAppleService
     ) async -> WhConsumptionViewModel
 }
 
+// MARK: WeatherViewModel
 public final class WeatherViewModel: WeatherViewModelProtocol {
+    /// location service.
     @Published var locationService: LocationService
+    /// weather service.
     @Published var weatherService: WeatherAppleService
-    
+    /**
+        Init.
+
+        - Parameter locationService: location service.
+    */
     init(
         locationService: LocationService,
         weatherService: WeatherAppleService
@@ -28,7 +42,7 @@ public final class WeatherViewModel: WeatherViewModelProtocol {
         self.locationService = locationService
         self.weatherService = weatherService
     }
-    
+    /// get location.
     @MainActor
     func getLocation() async throws {
         do {
@@ -41,7 +55,7 @@ public final class WeatherViewModel: WeatherViewModelProtocol {
             throw error
         }
     }
-    
+    /// get Weather for location.
     @MainActor
     func getWeatherForLocation() async throws {
         do {
@@ -57,7 +71,11 @@ public final class WeatherViewModel: WeatherViewModelProtocol {
             )
         }
     }
-    
+    /**
+        Get Consumption view model.
+
+        - Parameter weatherService: weather service.
+    */
     func getConsumptionViewModel(
         weatherService: WeatherAppleService
     ) -> WhConsumptionViewModel {

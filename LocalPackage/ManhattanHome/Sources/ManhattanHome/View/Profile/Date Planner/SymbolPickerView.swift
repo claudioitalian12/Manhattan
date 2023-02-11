@@ -9,18 +9,22 @@ import ManhattanCore
 import RealmSwift
 import SwiftUI
 
+// MARK: SymbolPicker
 struct SymbolPicker: View {
+    /// app environment.
     @Environment(\.appEnvironmentValue) var appEnvironment: AppEnvironment
+    /// view model.
     @ObservedObject var viewModel: SymbolPickerViewModel
+    /// dismiss.
     @Environment(\.dismiss) private var dismiss
-    
+    /// columns.
     var columns = Array(
         repeating: GridItem(
             .flexible()
         ),
         count: 6
     )
-
+    /// body.
     var body: some View {
         VStack {
             stackDismissButton()
@@ -33,7 +37,7 @@ struct SymbolPicker: View {
             viewModel.selectedColor = viewModel.event.colorOption
         }
     }
-    
+    /// stack dismiss button.
     @ViewBuilder
     func stackDismissButton() -> some View {
         HStack {
@@ -46,7 +50,7 @@ struct SymbolPicker: View {
             .padding()
         }
     }
-    
+    /// stack selected icon.
     @ViewBuilder
     func stackSelectedIcon() -> some View {
         HStack {
@@ -59,7 +63,7 @@ struct SymbolPicker: View {
         }
         .padding()
     }
-    
+    /// stack color list.
     @ViewBuilder
     func stackColorList() -> some View {
         HStack {
@@ -84,7 +88,7 @@ struct SymbolPicker: View {
         .padding(.horizontal)
         .frame(height: 40.0)
     }
-    
+    /// grid icon.
     @ViewBuilder
     func gridIcon() -> some View {
         ScrollView {

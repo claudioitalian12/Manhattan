@@ -7,4 +7,5 @@
 
 import SwiftUI
 
+// MARK: ManhattanViewModelProtocol
 public protocol ManhattanViewModelProtocol: ObservableObject { }

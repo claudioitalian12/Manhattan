@@ -8,12 +8,17 @@
 import ManhattanCore
 import SwiftUI
 
+// MARK: ProfileView
 struct ProfileView: View {
+    /// app environment.
     @Environment(\.appEnvironmentValue) var appEnvironment: AppEnvironment
+    /// profile view model.
     @StateObject var viewModel: ProfileViewModel = ProfileViewModel()
+    /// home show overlay.
     @Binding var homeShowOverlay: Bool
+    /// stack spacing.
     private let stackSpacing = 20.0
-
+    /// body.
     var body: some View {
         ScrollView {
             VStack(
@@ -59,7 +64,7 @@ struct ProfileView: View {
             viewModel.placeholderProfile.toggle()
         }
     }
-    
+    /// build profile info.
     @ViewBuilder
     private func buildProfileInfo() -> some View {
         Image(
@@ -71,7 +76,7 @@ struct ProfileView: View {
             .multilineTextAlignment(.center)
         buildMenuSettings()
     }
-    
+    /// build menu settings.
     @ViewBuilder
     private func buildMenuSettings() -> some View {
         Menu {
@@ -118,7 +123,7 @@ struct ProfileView: View {
                 .customProfileMenuTextButton()
         }
     }
-
+    /// build date picker.
     @ViewBuilder
     private func buildDatePicker() -> some View {
         DatePicker(
@@ -127,7 +132,7 @@ struct ProfileView: View {
         )
         .customProfileMDatePicker()
     }
-    
+    /// build menu label.
     @ViewBuilder
     private func buildMenuLabel(
         text: String,

@@ -9,12 +9,17 @@ import ManhattanCore
 import RealmSwift
 import SwiftUI
 
+// MARK: TaskRow
 struct TaskRow: View {
+    /// app environment.
     @Environment(\.appEnvironmentValue) var appEnvironment: AppEnvironment
+    /// is editing.
     @Binding var isEditing: Bool
+    /// task.
     @ObservedRealmObject var task: EventTask
+    /// is focused.
     @FocusState private var isFocused: Bool
-
+    /// body.
     var body: some View {
         HStack {
             Button {

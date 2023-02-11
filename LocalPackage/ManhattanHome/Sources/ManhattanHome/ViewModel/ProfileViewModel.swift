@@ -9,13 +9,27 @@ import ManhattanCore
 import RealmSwift
 import SwiftUI
 
+// MARK: ProfileViewModel
 public final class ProfileViewModel: ManhattanViewModelProtocol {
+    /// date.
     @Published var date = Date.now
+    /// is loading.
     @Published var isLoading = true
+    /// error message.
     @Published var errorMessage: String = ""
+    /// is alert hidden.
     @Published var isAlertHidden = false
+    /// placeholder profile.
     @Published var placeholderProfile: Bool = true
-    
+    /**
+        Init.
+
+        - Parameter date: date.
+        - Parameter isLoading: is loading.
+        - Parameter errorMessage: error message.
+        - Parameter isAlertHidden: is alert hidden.
+        - Parameter placeholderProfile: placeholder profile.
+    */
     init(
         _ date: Date = Date.now,
         _ isLoading: Bool = true,
@@ -29,7 +43,11 @@ public final class ProfileViewModel: ManhattanViewModelProtocol {
         self.isAlertHidden = isAlertHidden
         self.placeholderProfile = placeholderProfile
     }
-    
+    /**
+        Did tap logout.
+
+        - Parameter appEnvironment: app environment.
+    */
     @MainActor
     func didTapLogout(
         appEnvironment: AppEnvironment
@@ -44,7 +62,11 @@ public final class ProfileViewModel: ManhattanViewModelProtocol {
             isAlertHidden = !isAlertHidden
         }
     }
-    
+    /**
+        Did tap delete.
+
+        - Parameter appEnvironment: app environment.
+    */
     @MainActor
     func didtapDelete(
         appEnvironment: AppEnvironment
@@ -59,13 +81,21 @@ public final class ProfileViewModel: ManhattanViewModelProtocol {
             isAlertHidden = !isAlertHidden
         }
     }
-    
+    /**
+        Change overlay hidden state.
+
+        - Parameter homeShowOverlay: home show overlay..
+    */
     func changeOverlayHiddenState(
         homeShowOverlay: Binding<Bool>
     ) {
         homeShowOverlay.wrappedValue = !homeShowOverlay.wrappedValue
     }
-    
+    /**
+        Set sync.
+
+        - Parameter app: app environment..
+    */
     @MainActor
     func setSync(
         app: AppEnvironment
@@ -76,7 +106,7 @@ public final class ProfileViewModel: ManhattanViewModelProtocol {
             throw error
         }
     }
-    
+    /// get list view model.
     func getListViewModel() -> EventListViewModel {
         HomeFactory().getListViewModel()
     }

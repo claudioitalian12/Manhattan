@@ -9,16 +9,17 @@ import ManhattanCore
 import SwiftUI
 import RealmSwift
 
+// MARK: LoginViewModel
 public final class LoginViewModel: ManhattanViewModelProtocol {
     @Published var username = String()
     @Published var password = String()
     @Published var isOverlayHidden: Bool = false
     @Published var isAlertHidden: Bool = false
     @Published var errorMessage: String = ""
-    private var userService: UserService?
+    private var userService: UserServiceProtocol?
     
     init(
-        userService: UserService? = nil
+        userService: UserServiceProtocol? = nil
     ) {
         self.userService = userService
     }

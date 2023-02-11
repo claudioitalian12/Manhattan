@@ -10,14 +10,16 @@ import RealmSwift
 import WeatherKit
 import SwiftUI
 
+// MARK: HomeFactoryProtocol
 protocol HomeFactoryProtocol {
+    /// get home view model.
     func getHomeViewModel() -> HomeViewModel
-    
+    /// get weather view model.
     func getWeatherViewModel(
         locationService: LocationService,
         weatherService: WeatherAppleService
     ) -> WeatherViewModel
-    
+    /// get wh consumption view model.
     func getWhConsumptionViewModel(
         dateFormat: String,
         weatherService: WeatherAppleService,
@@ -25,11 +27,18 @@ protocol HomeFactoryProtocol {
     ) -> WhConsumptionViewModel
 }
 
+// MARK: HomeFactory
 class HomeFactory: HomeFactoryProtocol {
+    /// get home view model.
     func getHomeViewModel() -> HomeViewModel {
         HomeViewModel()
     }
-    
+    /**
+        Get weather view model.
+
+        - Parameter locationService: location service.
+        - Parameter weatherService: weather service.
+    */
     func getWeatherViewModel(
         locationService: LocationService,
         weatherService: WeatherAppleService
@@ -39,7 +48,13 @@ class HomeFactory: HomeFactoryProtocol {
             weatherService: weatherService
         )
     }
-    
+    /**
+        Get weather view model.
+
+        - Parameter dataFormat: data format.
+        - Parameter weatherService: weather service.
+        - Parameter consumptionValue: consumption value.
+    */
     func getWhConsumptionViewModel(
         dateFormat: String,
         weatherService: WeatherAppleService,
@@ -51,11 +66,11 @@ class HomeFactory: HomeFactoryProtocol {
             consumptionValue: consumptionValue
         )
     }
-    
+    /// get profile view model.
     func getProfileViewModel() -> ProfileViewModel {
         ProfileViewModel()
     }
-    
+    /// get task board view model.
     func getTaskBoardViewModel(
     ) -> TaskBoardViewModel {
         TaskBoardViewModel(
@@ -64,7 +79,7 @@ class HomeFactory: HomeFactoryProtocol {
             segmentationSelection: .all
         )
     }
-    
+    /// get list view model.
     func getListViewModel() -> EventListViewModel {
         EventListViewModel()
     }

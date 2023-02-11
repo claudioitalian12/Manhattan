@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// MARK: EventRowImageViewModifier
 struct EventRowImageViewModifier: ViewModifier {
     let color: Color
     let maxWidth: CGFloat = 50.0
@@ -37,6 +38,7 @@ extension Image {
     }
 }
 
+// MARK: EventRowDateTextViewModifier
 struct EventRowDateTextViewModifier: ViewModifier {
     
     func body(
@@ -60,6 +62,7 @@ extension Text {
     }
 }
 
+// MARK: EventRowTitleTextViewModifier
 struct EventRowTitleTextViewModifier: ViewModifier {
     
     func body(
@@ -82,6 +85,7 @@ extension Text {
     }
 }
 
+// MARK: EventRowCompliteTaskImageViewModifier
 struct EventRowCompliteTaskImageViewModifier: ViewModifier {
     
     func body(
@@ -100,6 +104,7 @@ extension Image {
     }
 }
 
+// MARK: EventRowHstackViewModifier
 struct EventRowHstackViewModifier: ViewModifier {
     let remainingTaskCount: Int
     
