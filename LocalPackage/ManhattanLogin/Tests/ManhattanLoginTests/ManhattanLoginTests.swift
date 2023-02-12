@@ -11,7 +11,6 @@ final class ManhattanLoginTests: XCTestCase {
         manhattanGateway = ManhattanLoginGateway(
             childGateway: [
                 ManhattanLoginGateway(
-                    childGateway: nil,
                     gatewayType: .signUp
                 )
             ],
@@ -37,7 +36,6 @@ final class ManhattanLoginTests: XCTestCase {
     
     func testManhattanDestinationViewNotExist() throws {
         let manhattanGateway = try XCTUnwrap(self.manhattanGateway)
-        manhattanGateway.childGateway = nil
         let destinationView = manhattanGateway.getDestionView(gatewayType: .signUp)
         XCTAssertNil(destinationView)
     }

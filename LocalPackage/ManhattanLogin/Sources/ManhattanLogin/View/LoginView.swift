@@ -55,7 +55,9 @@ public struct LoginView: View {
                     }
                 )
             }
-            .scrollIndicators(.hidden)
+            .scrollIndicators(
+                .hidden
+            )
             .overlay {
                 OverlayView()
                     .opacity(

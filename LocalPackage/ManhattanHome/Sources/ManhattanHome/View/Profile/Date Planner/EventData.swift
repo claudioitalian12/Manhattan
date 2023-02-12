@@ -34,7 +34,9 @@ final class EventData: ObservableObject {
     ) {
         if let eventResult = realm?.objects(Event.self) {
             self.events.removeAll()
-            self.events.append(objectsIn: eventResult)
+            self.events.append(
+                objectsIn: eventResult
+            )
         }
     }
     /**
@@ -47,14 +49,18 @@ final class EventData: ObservableObject {
     func delete(
         realm: Realm?,
         event: Event
-    ) throws {        
+    ) throws {
         guard let eventThaw = event.thaw() else {
             return
         }
         
-        eventThaw.realm?.writeAsync ({
-            eventThaw.realm?.delete(eventThaw)
-        }) { [weak self] error in
+        eventThaw.realm?.writeAsync(
+            {
+                eventThaw.realm?.delete(
+                    eventThaw
+                )
+            }
+        ) { [weak self] error in
             if let error {
                 os_log(.debug, "\(error.localizedDescription)")
                 return
@@ -87,12 +93,14 @@ final class EventData: ObservableObject {
         ) {
             guard let eventThaw = event.thaw() else { return }
             
-            event.thaw()?.realm?.writeAsync ({
-                event.thaw()?.realm?.add(
-                    eventThaw,
-                    update: .modified
-                )
-            }) { [weak self] error in
+            event.thaw()?.realm?.writeAsync (
+                {
+                    event.thaw()?.realm?.add(
+                        eventThaw,
+                        update: .modified
+                    )
+                }
+            ) { [weak self] error in
                 if let error {
                     os_log(
                         .debug,
@@ -110,13 +118,18 @@ final class EventData: ObservableObject {
                 )
             }
         } else {
-            realm?.writeAsync ({
-                realm?.add(
-                    event
-                )
-            }) { [weak self] error in
+            realm?.writeAsync (
+                {
+                    realm?.add(
+                        event
+                    )
+                }
+            ) { [weak self] error in
                 if let error {
-                    os_log(.debug, "\(error.localizedDescription)")
+                    os_log(
+                        .debug,
+                        "\(error.localizedDescription)"
+                    )
                     return
                 }
                 guard let self else { return }

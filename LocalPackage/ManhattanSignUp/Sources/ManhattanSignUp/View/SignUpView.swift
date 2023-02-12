@@ -52,7 +52,9 @@ public struct SignUpView: View {
                 }
             }
         }
-        .scrollIndicators(.hidden)
+        .scrollIndicators(
+            .hidden
+        )
         .alert(
             "signUpView_alert_title".localized,
             isPresented: $viewModel.isAlertHidden,
@@ -80,8 +82,12 @@ public struct SignUpView: View {
             alignment: .leading,
             spacing: 10.0
         ) {
-            Text("signinView_label_title".localized)
-                .signUpTextTitle(font: .title)
+            Text(
+                "signinView_label_title".localized
+            )
+            .signUpTextTitle(
+                font: .title
+            )
         }
     }
     /// name field.
@@ -91,8 +97,12 @@ public struct SignUpView: View {
             alignment: .leading,
             spacing: 10.0
         ) {
-            Text("signinView_label_username".localized)
-                .signUpTextTitle(font: .title3)
+            Text(
+                "signinView_label_username".localized
+            )
+            .signUpTextTitle(
+                font: .title3
+            )
             TextField(
                 "signUpView_button_username_placeholder".localized,
                 text: $viewModel.username

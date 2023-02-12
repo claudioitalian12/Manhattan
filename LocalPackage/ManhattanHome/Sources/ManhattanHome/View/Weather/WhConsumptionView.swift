@@ -19,9 +19,13 @@ struct KwhConsumptionView<T: WhConsumptionViewModelProtocol>: View {
         VStack(
             spacing: 20.0
         ) {
-            Text("kwhConsumptionView_kwh_text".localized)
-                .customTextKWHCosumption()
-            Text(viewModel.consumptionValue)
+            Text(
+                "kwhConsumptionView_kwh_text".localized
+            )
+            .customTextKWHCosumption()
+            Text(
+                viewModel.consumptionValue
+            )
         }
         .customStackKWHCosumption()
         .task(

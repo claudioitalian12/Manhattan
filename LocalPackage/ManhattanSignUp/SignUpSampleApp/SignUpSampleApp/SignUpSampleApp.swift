@@ -13,7 +13,6 @@ import ManhattanSignUp
 struct ManhattanApp: App {
     @ObservedObject var appEnvironment = AppEnvironment()
     let signUpView: ManhattanGatewayProtocol = ManhattanSignUpGateway(
-        childGateway: nil,
         gatewayType: .signUp
     )
     

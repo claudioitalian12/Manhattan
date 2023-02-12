@@ -20,15 +20,17 @@ struct TaskBoardButtonDetailView: View {
     /// body.
     var body: some View {
         Button {
-            appEnvironment.realm?.writeAsync({
-                guard let thaw = subTask.thaw() else {
-                    subTask.isComplete.toggle()
-                    return
+            appEnvironment.realm?.writeAsync(
+                {
+                    guard let thaw = subTask.thaw() else {
+                        subTask.isComplete.toggle()
+                        return
+                    }
+                    thaw.isComplete.toggle()
+                },
+                onComplete: { _ in
+                    selectedIndex = !selectedIndex
                 }
-                thaw.isComplete.toggle()
-            }, onComplete: { _ in
-                selectedIndex = !selectedIndex
-             }
             )
         } label: {
             Image(

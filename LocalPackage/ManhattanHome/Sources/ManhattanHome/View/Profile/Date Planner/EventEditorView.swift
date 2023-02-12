@@ -26,27 +26,33 @@ struct EventEditor: View {
     /// body.
     var body: some View {
         contentStack()
-        .task {
-            if !viewModel.isNew {
-                viewModel.editingEvent = viewModel.event
+            .task {
+                if !viewModel.isNew {
+                    viewModel.editingEvent = viewModel.event
+                }
             }
-        }
-        .task(
-            id: viewModel.isEditing
-        ) {
-            if !viewModel.isEditing {
-                hideKeyboard()
+            .task(
+                id: viewModel.isEditing
+            ) {
+                if !viewModel.isEditing {
+                    hideKeyboard()
+                }
             }
-        }
-        .overlay(
-            alignment: .center
-        ) {
-            if isEventDeleted {
-                Color(UIColor.systemBackground)
-                Text("eventEditorView_profile_title_detail_text".localized)
-                    .foregroundStyle(.secondary)
+            .overlay(
+                alignment: .center
+            ) {
+                if isEventDeleted {
+                    Color(
+                        UIColor.systemBackground
+                    )
+                    Text(
+                        "eventEditorView_profile_title_detail_text".localized
+                    )
+                    .foregroundStyle(
+                        .secondary
+                    )
+                }
             }
-        }
     }
     /// content stack.
     @ViewBuilder
@@ -66,7 +72,9 @@ struct EventEditor: View {
                     rightButton()
                 }
             }
-            .disabled(isEventDeleted)
+            .disabled(
+                isEventDeleted
+            )
             
             if viewModel.isEditing && !viewModel.isNew {
                 deleteButton()
@@ -76,7 +84,9 @@ struct EventEditor: View {
     /// cancel button.
     @ViewBuilder
     func cancelButton() -> some View {
-        Button("eventEditorView_profile_navigation_remove_button".localized) {
+        Button(
+            "eventEditorView_profile_navigation_remove_button".localized
+        ) {
             isPresented.toggle()
         }
     }
@@ -110,7 +120,11 @@ struct EventEditor: View {
             }
             viewModel.isEditing.toggle()
         } label: {
-            Text(viewModel.isNew ? "eventEditorView_profile_navigation_add_button".localized : (viewModel.isEditing ? "eventEditorView_profile_navigation_done_button".localized : "eventEditorView_profile_navigation_edit_button".localized))
+            Text(
+                viewModel.isNew ? "eventEditorView_profile_navigation_add_button".localized : (
+                    viewModel.isEditing ? "eventEditorView_profile_navigation_done_button".localized : "eventEditorView_profile_navigation_edit_button".localized
+                )
+            )
         }
     }
     /// delete button.
@@ -129,9 +143,16 @@ struct EventEditor: View {
                     isPresented.toggle()
                 }
             }, label: {
-                Label("eventEditorView_profile_toolbar_delete_button".localized, systemImage: "trash.circle.fill")
-                    .font(.title2)
-                    .foregroundColor(.red)
+                Label(
+                    "eventEditorView_profile_toolbar_delete_button".localized,
+                    systemImage: "trash.circle.fill"
+                )
+                .font(
+                    .title2
+                )
+                .foregroundColor(
+                    .red
+                )
             }
         )
         .padding()

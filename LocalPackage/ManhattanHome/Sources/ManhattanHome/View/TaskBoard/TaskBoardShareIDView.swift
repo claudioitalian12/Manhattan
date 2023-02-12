@@ -16,7 +16,7 @@ struct TaskBoardShareIDView: View {
     /// body.
     var body: some View {
         TextField(
-            "board user ID",
+            "taskView_board_menu_share".localized,
             text: $shareId,
             axis: .vertical
         )

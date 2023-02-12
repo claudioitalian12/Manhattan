@@ -25,3 +25,15 @@
 "profileView_profile_list_section_next30" = "Next 30 Days";
 "profileView_profile_list_section_future" = "Future";
 "profileView_profile_list_section_past" = "Past";
+"taskView_baard_menu_action_add" = "Add Task";
+"taskView_baard_task_status" = "New";
+"taskView_baard_task_title" = "New Task";
+"taskView_edit_task_button_cancel" = "cancel";
+"taskView_edit_task_button_done" = "done";
+"taskView_edit_task_button_id" = "Add ID";
+"taskView_edit_task_title" = "Board Name";
+"taskView_board_menu_share" = "board user ID";
+"taskView_board_title" = "Spritz Board";
+"taskView_board_menu_create" = "Create Board";
+"taskView_board_menu_latest" = "Latest";
+"taskView_board_menu_oldest" = "Oldest";

@@ -13,7 +13,6 @@ import ManhattanLogin
 struct ManhattanApp: App {
     @ObservedObject var appEnvironment = AppEnvironment()
     let loginView: ManhattanGatewayProtocol = ManhattanLoginGateway(
-        childGateway: nil,
         gatewayType: .login
     )
     

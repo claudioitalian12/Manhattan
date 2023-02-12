@@ -31,13 +31,19 @@ struct TaskBoardDetailView: View {
                 sectionTask()
                 sectionComments()
             }
-            .scrollIndicators(.hidden)
-            .listStyle(.insetGrouped)
+            .scrollIndicators(
+                .hidden
+            )
+            .listStyle(
+                .insetGrouped
+            )
             .toolbar {
                 Button {
                     endEdit.toggle()
                 } label: {
-                    Text("Done")
+                    Text(
+                        "Done"
+                    )
                 }
             }
         }
@@ -54,21 +60,36 @@ struct TaskBoardDetailView: View {
                         text: $task.title,
                         axis: .vertical
                     )
-                    .font(.title)
-                    .multilineTextAlignment(.center)
-                    Picker("", selection: $selectedState) {
+                    .font(
+                        .title
+                    )
+                    .multilineTextAlignment(
+                        .center
+                    )
+                    Picker(
+                        "",
+                        selection: $selectedState
+                    ) {
                         ForEach(
                             TaskSection.allCases,
                             id: \.self
                         ) { option in
                             if option != .all {
-                                Text(option.rawValue)
-                                    .tag(option.rawValue)
+                                Text(
+                                    option.rawValue
+                                )
+                                .tag(
+                                    option.rawValue
+                                )
                             }
                         }
                     }
-                    .pickerStyle(.menu)
-                    .task(id: selectedState) {
+                    .pickerStyle(
+                        .menu
+                    )
+                    .task(
+                        id: selectedState
+                    ) {
                         appEnvironment.realm?.writeAsync({
                             guard let thaw = task.thaw() else {
                                 task.status = selectedState.rawValue
@@ -93,8 +114,12 @@ struct TaskBoardDetailView: View {
                 )
             } header: {
                 HStack {
-                    Text("Body")
-                    Image(systemName: "note.text")
+                    Text(
+                        "Body"
+                    )
+                    Image(
+                        systemName: "note.text"
+                    )
                 }
             }
         )
@@ -104,52 +129,79 @@ struct TaskBoardDetailView: View {
     private func sectionAttachments() -> AnyView {
         AnyView(
             Section {
-                ForEach(0..<task.attachments.count, id: \.self) { index in
+                ForEach(
+                    0..<task.attachments.count,
+                    id: \.self
+                ) { index in
                     TextField(
                         task.attachments[index],
                         text: Binding(
                             get: {
                                 task.attachments[index]
-                                
                             },
-                            set: {(value) in
-                                appEnvironment.realm?.writeAsync({
-                                    guard let thaw = task.thaw() else {
-                                        task.attachments[index] = value
-                                        return
+                            set: { (value) in
+                                appEnvironment.realm?.writeAsync(
+                                    {
+                                        guard let thaw = task.thaw() else {
+                                            task.attachments[index] = value
+                                            return
+                                        }
+                                        thaw.attachments[index] = value
                                     }
-                                    thaw.attachments[index] = value
-                                })
-                            }),
+                                )
+                            }
+                        ),
                         axis: .vertical
                     )
-                    .keyboardType(.URL)
-                    .textContentType(.URL)
+                    .keyboardType(
+                        .URL
+                    )
+                    .textContentType(
+                        .URL
+                    )
                 }
                 .onDelete { indexSet in
-                    appEnvironment.realm?.writeAsync({
-                        guard let thaw = task.thaw() else {
-                            task.attachments.remove(atOffsets: indexSet)
-                            return
+                    appEnvironment.realm?.writeAsync(
+                        {
+                            guard let thaw = task.thaw() else {
+                                task.attachments.remove(
+                                    atOffsets: indexSet
+                                )
+                                return
+                            }
+                            thaw.attachments.remove(
+                                atOffsets: indexSet
+                            )
                         }
-                        thaw.attachments.remove(atOffsets: indexSet)
-                    })
+                    )
                 }
                 Button {
-                    appEnvironment.realm?.writeAsync({
-                        guard let thaw = task.thaw() else {
-                            $task.attachments.append("")
-                            return
+                    appEnvironment.realm?.writeAsync(
+                        {
+                            guard let thaw = task.thaw() else {
+                                $task.attachments.append(
+                                    ""
+                                )
+                                return
+                            }
+                            thaw.attachments.append(
+                                ""
+                            )
                         }
-                        thaw.attachments.append("")
-                    })
+                    )
                 } label: {
-                    Text("Add attachment")
+                    Text(
+                        "Add attachment"
+                    )
                 }
             } header: {
                 HStack {
-                    Text("Attachments")
-                    Image(systemName: "link")
+                    Text(
+                        "Attachments"
+                    )
+                    Image(
+                        systemName: "link"
+                    )
                 }
             }
         )
@@ -159,7 +211,10 @@ struct TaskBoardDetailView: View {
     private func sectionTask() -> AnyView {
         AnyView(
             Section {
-                ForEach($task.boardSubTasks, id: \.self) { element in
+                ForEach(
+                    $task.boardSubTasks,
+                    id: \.self
+                ) { element in
                     HStack {
                         TaskBoardButtonDetailView(
                             subTask: element.wrappedValue,
@@ -173,35 +228,53 @@ struct TaskBoardDetailView: View {
                     }
                 }
                 .onDelete { indexSet in
-                    appEnvironment.realm?.writeAsync({
-                        guard let thaw = task.thaw() else {
-                            task.boardSubTasks.remove(atOffsets: indexSet)
-                            return
+                    appEnvironment.realm?.writeAsync(
+                        {
+                            guard let thaw = task.thaw() else {
+                                task.boardSubTasks.remove(
+                                    atOffsets: indexSet
+                                )
+                                return
+                            }
+                            thaw.boardSubTasks.remove(
+                                atOffsets: indexSet
+                            )
                         }
-                        thaw.boardSubTasks.remove(atOffsets: indexSet)
-                    })
+                    )
                 }
                 Button {
-                    appEnvironment.realm?.writeAsync({
-                        let boardSubTask = BoardSubTask(
-                            boardTask_id: task._id,
-                            isComplete: false,
-                            shared_id: task.shared_id,
-                            text: ""
-                        )
-                        guard let thaw = task.thaw() else {
-                            $task.boardSubTasks.append(boardSubTask)
-                            return
+                    appEnvironment.realm?.writeAsync(
+                        {
+                            let boardSubTask = BoardSubTask(
+                                boardTask_id: task._id,
+                                isComplete: false,
+                                shared_id: task.shared_id,
+                                text: ""
+                            )
+                            guard let thaw = task.thaw() else {
+                                $task.boardSubTasks.append(
+                                    boardSubTask
+                                )
+                                return
+                            }
+                            thaw.boardSubTasks.append(
+                                boardSubTask
+                            )
                         }
-                        thaw.boardSubTasks.append(boardSubTask)
-                    })
+                    )
                 } label: {
-                    Text("Add task")
+                    Text(
+                        "taskView_baard_menu_action_add".localized
+                    )
                 }
             } header: {
                 HStack {
-                    Text("Tasks")
-                    Image(systemName: "list.bullet")
+                    Text(
+                        "Tasks"
+                    )
+                    Image(
+                        systemName: "list.bullet"
+                    )
                 }
             }
         )
@@ -211,49 +284,73 @@ struct TaskBoardDetailView: View {
     private func sectionComments() -> AnyView {
         AnyView(
             Section {
-                ForEach(0..<task.comments.count, id: \.self) { index in
+                ForEach(
+                    0..<task.comments.count,
+                    id: \.self
+                ) { index in
                     TextField(
                         task.comments[index],
                         text: Binding(
                             get: {
                                 task.comments[index]
                             },
-                            set: {(value) in
-                                appEnvironment.realm?.writeAsync({
-                                    guard let thaw = task.thaw() else {
-                                        task.comments[index] = value
-                                        return
+                            set: { (value) in
+                                appEnvironment.realm?.writeAsync(
+                                    {
+                                        guard let thaw = task.thaw() else {
+                                            task.comments[index] = value
+                                            return
+                                        }
+                                        thaw.comments[index] = value
                                     }
-                                    thaw.comments[index] = value
-                                })
-                            }),
+                                )
+                            }
+                        ),
                         axis: .vertical
                     )
                 }
                 .onDelete { indexSet in
-                    appEnvironment.realm?.writeAsync({
-                        guard let thaw = task.thaw() else {
-                            task.comments.remove(atOffsets: indexSet)
-                            return
+                    appEnvironment.realm?.writeAsync(
+                        {
+                            guard let thaw = task.thaw() else {
+                                task.comments.remove(
+                                    atOffsets: indexSet
+                                )
+                                return
+                            }
+                            thaw.comments.remove(
+                                atOffsets: indexSet
+                            )
                         }
-                        thaw.comments.remove(atOffsets: indexSet)
-                    })
+                    )
                 }
                 Button {
-                    appEnvironment.realm?.writeAsync({
-                        guard let thaw = task.thaw() else {
-                            $task.comments.append("")
-                            return
+                    appEnvironment.realm?.writeAsync(
+                        {
+                            guard let thaw = task.thaw() else {
+                                $task.comments.append(
+                                    ""
+                                )
+                                return
+                            }
+                            thaw.comments.append(
+                                ""
+                            )
                         }
-                        thaw.comments.append("")
-                    })
+                    )
                 } label: {
-                    Text("Add comment")
+                    Text(
+                        "Add comment"
+                    )
                 }
             } header: {
                 HStack {
-                    Text("Comments")
-                    Image(systemName: "text.bubble.fill")
+                    Text(
+                        "Comments"
+                    )
+                    Image(
+                        systemName: "text.bubble.fill"
+                    )
                 }
             }
         )

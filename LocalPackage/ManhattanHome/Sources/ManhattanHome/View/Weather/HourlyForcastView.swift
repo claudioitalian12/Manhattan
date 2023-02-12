@@ -21,9 +21,15 @@ struct HourlyForcastView: View {
         VStack(
             alignment: .leading
         ) {
-            Text("homeView_hours_title".localized)
-                .font(.caption)
-                .opacity(opacityValue)
+            Text(
+                "homeView_hours_title".localized
+            )
+            .font(
+                .caption
+            )
+            .opacity(
+                opacityValue
+            )
             hourlySection()
         }
         .customVStackHourlyForcastView()
@@ -31,7 +37,9 @@ struct HourlyForcastView: View {
     /// hourly section.
     @ViewBuilder
     private func hourlySection() -> some View {
-        ScrollView(.horizontal) {
+        ScrollView(
+            .horizontal
+        ) {
             LazyHStack {
                 ForEach(
                     viewModel.hourWeather ?? [],
@@ -40,13 +48,21 @@ struct HourlyForcastView: View {
                     VStack(
                         spacing: spacingValue
                     ) {
-                        Text(hourWeatherItem.date.formatAsAbbreviatedTime())
+                        Text(
+                            hourWeatherItem.date.formatAsAbbreviatedTime()
+                        )
                         Image(
                             systemName: "\(hourWeatherItem.symbolName).fill"
                         )
-                        .foregroundColor(.yellow)
-                        Text(hourWeatherItem.temperature.formatted())
-                            .fontWeight(.medium)
+                        .foregroundColor(
+                            .yellow
+                        )
+                        Text(
+                            hourWeatherItem.temperature.formatted()
+                        )
+                        .fontWeight(
+                            .medium
+                        )
                     }
                     .padding()
                 }

@@ -72,8 +72,12 @@ struct ProfileView: View {
             bundle: .module
         )
         .customImageProfileViewModifier()
-        Text(appEnvironment.getDatabaseUser()?.profile.email ?? "")
-            .multilineTextAlignment(.center)
+        Text(
+            appEnvironment.getDatabaseUser()?.profile.email ?? ""
+        )
+        .multilineTextAlignment(
+            .center
+        )
         buildMenuSettings()
     }
     /// build menu settings.
@@ -119,8 +123,10 @@ struct ProfileView: View {
                 )
             }
         } label: {
-            Text("\("profileView_profile_menu_setting".localized) \(Image(systemName: "person.crop.circle"))")
-                .customProfileMenuTextButton()
+            Text(
+                "\("profileView_profile_menu_setting".localized) \(Image(systemName: "person.crop.circle"))"
+            )
+            .customProfileMenuTextButton()
         }
     }
     /// build date picker.
@@ -138,7 +144,9 @@ struct ProfileView: View {
         text: String,
         systemName: String
     ) -> some View {
-        Text(text)
+        Text(
+            text
+        )
         Image(
             systemName: systemName
         )

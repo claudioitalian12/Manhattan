@@ -28,31 +28,47 @@ struct TaskBoardView: View {
     /// list order latest.
     @State private var listOrderLatest = true
     /**
-        Init.
-
-        - Parameter viewModel: view model.
-    */
+     Init.
+     
+     - Parameter viewModel: view model.
+     */
     init(
         viewModel: TaskBoardViewModel
     ){
         self.viewModel = viewModel
         
-        UISegmentedControl.appearance().backgroundColor = .systemBlue
-        UISegmentedControl.appearance().setTitleTextAttributes(
-            [.foregroundColor: UIColor.white],
-            for: .selected
-        )
-        UISegmentedControl.appearance().setTitleTextAttributes(
-            [.foregroundColor: UIColor.white],
-            for: .normal
-        )
-        UISegmentedControl.appearance().selectedSegmentTintColor = UIColor.white.withAlphaComponent(0.2)
+        UISegmentedControl
+            .appearance()
+            .backgroundColor = .systemBlue
+        UISegmentedControl
+            .appearance()
+            .setTitleTextAttributes(
+                [
+                    .foregroundColor: UIColor.white
+                ],
+                for: .selected
+            )
+        UISegmentedControl
+            .appearance()
+            .setTitleTextAttributes(
+                [
+                    .foregroundColor: UIColor.white
+                ],
+                for: .normal
+            )
+        UISegmentedControl
+            .appearance()
+            .selectedSegmentTintColor = UIColor.white.withAlphaComponent(
+                0.2
+            )
     }
     /// body.
     var body: some View {
         VStack {
             viewBoardHeader()
-            Spacer(minLength: 40.0)
+            Spacer(
+                minLength: 40.0
+            )
             ScrollView(
                 showsIndicators: false
             ) {
@@ -84,25 +100,42 @@ struct TaskBoardView: View {
         guard let list = appEnvironment.realm?.objects(BoardsData.self),
               let myList = list.first else {
             boardsData.owner_id = appEnvironment.getUserID()
-            appEnvironment.realm?.writeAsync({
-                appEnvironment.realm?.add(boardsData)
-            }, onComplete: { error in
-                guard let boardsObject = appEnvironment.realm?.objects(Board.self) else { return }
-                boardsData.boards.append(objectsIn: boardsObject)
-            })
+            appEnvironment.realm?.writeAsync(
+                {
+                    appEnvironment.realm?.add(
+                        boardsData
+                    )
+                },
+                onComplete: { error in
+                    guard let boardsObject = appEnvironment.realm?.objects(Board.self) else {
+                        return
+                    }
+                    boardsData.boards.append(
+                        objectsIn: boardsObject
+                    )
+                }
+            )
             return
         }
         boardsData = myList
         selection = myList.boards.first ?? Board()
-        appEnvironment.realm?.objects(Board.self).forEach({ board in
-            if board.owner_id != appEnvironment.getUserID() && !boardsData.boards.contains(where: { boardObject in
-                boardObject._id == board._id
-            }) {
-                appEnvironment.realm?.writeAsync({
-                    $boardsData.boards.append(board)
-                })
+        appEnvironment.realm?.objects(Board.self).forEach(
+            { board in
+                if board.owner_id != appEnvironment.getUserID() && !boardsData.boards.contains(
+                    where: { boardObject in
+                        boardObject._id == board._id
+                    }
+                ) {
+                    appEnvironment.realm?.writeAsync(
+                        {
+                            $boardsData.boards.append(
+                                board
+                            )
+                        }
+                    )
+                }
             }
-        })
+        )
         addTask.toggle()
     }
     /// refresh list.
@@ -111,28 +144,46 @@ struct TaskBoardView: View {
         guard let list = appEnvironment.realm?.objects(BoardsData.self),
               let myList = list.first else {
             boardsData.owner_id = appEnvironment.getUserID()
-            appEnvironment.realm?.writeAsync({
-                appEnvironment.realm?.add(boardsData)
-            }, onComplete: { error in
-                guard let boardsObject = appEnvironment.realm?.objects(Board.self) else { return }
-                boardsData.boards.append(objectsIn: boardsObject)
-                addTask.toggle()
-            })
+            appEnvironment.realm?.writeAsync(
+                {
+                    appEnvironment.realm?.add(
+                        boardsData
+                    )
+                },
+                onComplete: { error in
+                    guard let boardsObject = appEnvironment.realm?.objects(Board.self) else {
+                        return
+                    }
+                    boardsData.boards.append(
+                        objectsIn: boardsObject
+                    )
+                    addTask.toggle()
+                }
+            )
             return
         }
         boardsData = myList
         selection = tempSelect
-        appEnvironment.realm?.objects(Board.self).forEach({ board in
-            if board.owner_id != appEnvironment.getUserID() && !boardsData.boards.contains(where: { boardObject in
-                boardObject._id == board._id
-            }) {
-                appEnvironment.realm?.writeAsync({
-                    $boardsData.boards.append(board)
-                }, onComplete: { _ in
-                    addTask.toggle()
-                })
+        appEnvironment.realm?.objects(Board.self).forEach(
+            { board in
+                if board.owner_id != appEnvironment.getUserID() && !boardsData.boards.contains(
+                    where: { boardObject in
+                        boardObject._id == board._id
+                    }
+                ) {
+                    appEnvironment.realm?.writeAsync(
+                        {
+                            $boardsData.boards.append(
+                                board
+                            )
+                        },
+                        onComplete: { _ in
+                            addTask.toggle()
+                        }
+                    )
+                }
             }
-        })
+        )
         addTask.toggle()
     }
     /// view board header.
@@ -148,10 +199,12 @@ struct TaskBoardView: View {
             alignment: .center,
             spacing: 20.0
         ) {
-            Text("Spritz Board")
-                .customTaskBoardText(
-                    font: .largeTitle
-                )
+            Text(
+                "taskView_board_title".localized
+            )
+            .customTaskBoardText(
+                font: .largeTitle
+            )
             HStack(
                 spacing: 15.0
             ) {
@@ -159,16 +212,26 @@ struct TaskBoardView: View {
                     Button {
                         showAddBoard.toggle()
                     } label: {
-                        Text("Create Board")
-                        Image(systemName: "clipboard")
+                        Text(
+                            "taskView_board_menu_create".localized
+                        )
+                        Image(
+                            systemName: "clipboard"
+                        )
                     }
-                    TaskBoardAddTaskView(
-                        board: $selection,
-                        addTask: $addTask
-                    )
+                    if boardsData.boards.count != 0 {
+                        TaskBoardAddTaskView(
+                            board: $selection,
+                            addTask: $addTask
+                        )
+                    }
                 } label: {
-                    Image(systemName: "plus.circle")
-                        .foregroundColor(.blue)
+                    Image(
+                        systemName: "plus.circle"
+                    )
+                    .foregroundColor(
+                        .blue
+                    )
                 }
                 viewBoardMenu()
                 viewOrderTask()
@@ -186,12 +249,18 @@ struct TaskBoardView: View {
                 Button {
                     selection = index
                 } label: {
-                    Text(index.title)
+                    Text(
+                        index.title
+                    )
                 }
             }
         } label: {
-            Image(systemName: "list.bullet")
-                .foregroundColor(.blue)
+            Image(
+                systemName: "list.bullet"
+            )
+            .foregroundColor(
+                .blue
+            )
         }
     }
     /// view order task.
@@ -202,19 +271,31 @@ struct TaskBoardView: View {
                 listOrderLatest = true
                 addTask.toggle()
             } label: {
-                Text("Latest")
-                Image(systemName: "hourglass.tophalf.filled")
+                Text(
+                    "taskView_board_menu_latest".localized
+                )
+                Image(
+                    systemName: "hourglass.tophalf.filled"
+                )
             }
             Button {
                 listOrderLatest = false
                 addTask.toggle()
             } label: {
-                Text("Oldest")
-                Image(systemName: "hourglass.bottomhalf.filled")
+                Text(
+                    "taskView_board_menu_oldest".localized
+                )
+                Image(
+                    systemName: "hourglass.bottomhalf.filled"
+                )
             }
         } label: {
-            Image(systemName: "arrow.up.arrow.down")
-                .foregroundColor(.blue)
+            Image(
+                systemName: "arrow.up.arrow.down"
+            )
+            .foregroundColor(
+                .blue
+            )
         }
     }
     /// view segment status.
@@ -228,8 +309,12 @@ struct TaskBoardView: View {
                 TaskSection.allCases,
                 id: \.self
             ) { option in
-                Text(option.rawValue)
-                    .tag(option.rawValue)
+                Text(
+                    option.rawValue
+                )
+                .tag(
+                    option.rawValue
+                )
             }
         }
         .customTaskBoardPicker()
@@ -238,7 +323,9 @@ struct TaskBoardView: View {
     @ViewBuilder
     private func viewBoardTasks() -> some View {
         if addTask == true || addTask == false, listOrderLatest {
-            ForEach($selection.boardTasks.reversed()) { index in
+            ForEach(
+                $selection.boardTasks.reversed()
+            ) { index in
                 if viewModel.segmentationSelection.rawValue == index.status.wrappedValue ||
                     viewModel.segmentationSelection == .all {
                     TaskBoardCardView(
@@ -248,7 +335,9 @@ struct TaskBoardView: View {
                 }
             }
         } else {
-            ForEach($selection.boardTasks) { index in
+            ForEach(
+                $selection.boardTasks
+            ) { index in
                 if viewModel.segmentationSelection.rawValue == index.status.wrappedValue ||
                     viewModel.segmentationSelection == .all {
                     TaskBoardCardView(

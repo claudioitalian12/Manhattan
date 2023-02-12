@@ -24,15 +24,21 @@ struct EventDetail: View {
         List {
             taskTitle()
             taskDate()
-            Text("eventDetailView_profile_title_divider".localized)
-                .fontWeight(.bold)
+            Text(
+                "eventDetailView_profile_title_divider".localized
+            )
+            .fontWeight(.bold)
             taskRows()
             addTaskButton()
         }
-        .disabled(!isEditing)
-        #if os(iOS)
-        .navigationBarTitleDisplayMode(.inline)
-        #endif
+        .disabled(
+            !isEditing
+        )
+#if os(iOS)
+        .navigationBarTitleDisplayMode(
+            .inline
+        )
+#endif
         .sheet(
             isPresented: $isPickingSymbol
         ) {
@@ -57,23 +63,40 @@ struct EventDetail: View {
                     systemName: event.symbol
                 )
                 .sfSymbolStyling()
-                .foregroundColor(event.colorOption)
-                .opacity(isEditing ? 0.3 : 1.0)
+                .foregroundColor(
+                    event.colorOption
+                )
+                .opacity(
+                    isEditing ? 0.3 : 1.0
+                )
             }
-            .buttonStyle(.plain)
-            .padding(.horizontal, 5.0)
-
+            .buttonStyle(
+                .plain
+            )
+            .padding(
+                .horizontal,
+                5.0
+            )
+            
             if isEditing {
                 TextField(
                     "eventDetailView_profile_title_textfield".localized,
                     text: $event.title,
                     axis: .vertical
                 )
-                .font(.title2)
+                .font(
+                    .title2
+                )
             } else {
-                Text(event.title)
-                    .font(.title2)
-                    .fontWeight(.semibold)
+                Text(
+                    event.title
+                )
+                .font(
+                    .title2
+                )
+                .fontWeight(
+                    .semibold
+                )
             }
         }
     }
@@ -86,26 +109,36 @@ struct EventDetail: View {
                 selection: $event.date
             )
             .labelsHidden()
-            .listRowSeparator(.hidden)
+            .listRowSeparator(
+                .hidden
+            )
         } else {
             HStack {
-                Text(event.dateFormatted)
+                Text(
+                    event.dateFormatted
+                )
             }
-            .listRowSeparator(.hidden)
+            .listRowSeparator(
+                .hidden
+            )
         }
     }
     /// task rows.
     @ViewBuilder
     func taskRows() -> some View {
-        ForEach(event.tasks) { eventTask in
-                TaskRow(
-                    isEditing: $isEditing,
-                    task: eventTask
-                )
+        ForEach(
+            event.tasks
+        ) { eventTask in
+            TaskRow(
+                isEditing: $isEditing,
+                task: eventTask
+            )
         }
         .onDelete(
             perform: { indexSet in
-                deleteElement(indexSet: indexSet)
+                deleteElement(
+                    indexSet: indexSet
+                )
             }
         )
     }
@@ -119,23 +152,29 @@ struct EventDetail: View {
                 Image(
                     systemName: "plus"
                 )
-                Text("eventDetailView_profile_add_button".localized)
+                Text(
+                    "eventDetailView_profile_add_button".localized
+                )
             }
         }
-        .buttonStyle(.borderless)
+        .buttonStyle(
+            .borderless
+        )
     }
     /**
-        Delete Element.
-
-        - Parameter indexSet: index set.
-    */
+     Delete Element.
+     
+     - Parameter indexSet: index set.
+     */
     @MainActor
     private func deleteElement(
         indexSet: IndexSet
     ) {
         guard let eventThaw = event.tasks.realm?.thaw() else {
             appEnvironment.realm?.writeAsync {
-                appEnvironment.realm?.delete(event.tasks[indexSet.count - 1])
+                appEnvironment.realm?.delete(
+                    event.tasks[indexSet.count - 1]
+                )
             }
             return
         }
@@ -148,27 +187,33 @@ struct EventDetail: View {
     /// write element.
     @MainActor
     private func writeElement() {
-                guard let thaw = event.tasks.realm?.thaw() else {
-                    appEnvironment.realm?.writeAsync {
-                        let eventTask = EventTask(
-                            event_id: event._id,
-                            isNew: true,
-                            owner_id: appEnvironment.getUserID(),
-                            text: ""
-                        )
-                        appEnvironment.realm?.add(eventTask)
-                        event.tasks.append(eventTask)
-                    }
-                    return
-                }
-                thaw.writeAsync {
-                    let eventTask = EventTask(
-                        event_id: event._id,
-                        isNew: true,
-                        owner_id: appEnvironment.getUserID(),
-                        text: ""
-                    )
-                    event.thaw()?.tasks.append(eventTask)
-                }
+        guard let thaw = event.tasks.realm?.thaw() else {
+            appEnvironment.realm?.writeAsync {
+                let eventTask = EventTask(
+                    event_id: event._id,
+                    isNew: true,
+                    owner_id: appEnvironment.getUserID(),
+                    text: ""
+                )
+                appEnvironment.realm?.add(
+                    eventTask
+                )
+                event.tasks.append(
+                    eventTask
+                )
+            }
+            return
+        }
+        thaw.writeAsync {
+            let eventTask = EventTask(
+                event_id: event._id,
+                isNew: true,
+                owner_id: appEnvironment.getUserID(),
+                text: ""
+            )
+            event.thaw()?.tasks.append(
+                eventTask
+            )
+        }
     }
 }

@@ -28,22 +28,31 @@ struct TaskBoardAddTaskView: View {
                 comments: RealmSwift.List<String>(),
                 owner_id: appEnvironment.getUserID(),
                 shared_id: board.shared_id,
-                status: "New",
-                text: "New Task",
-                title: "New Task"
+                status: "taskView_baard_task_status".localized,
+                text: "taskView_baard_task_title".localized,
+                title: "taskView_baard_task_title".localized
             )
-            
-            appEnvironment.realm?.writeAsync({
-                appEnvironment.realm?.add(boardTask)
-                $board.boardTasks.append(
-                    boardTask
-                )
-            }, onComplete: { _ in
-                addTask.toggle()
-            })
+
+            appEnvironment.realm?.writeAsync(
+                {
+                    appEnvironment.realm?.add(
+                        boardTask
+                    )
+                    $board.boardTasks.append(
+                        boardTask
+                    )
+                },
+                onComplete: { _ in
+                    addTask.toggle()
+                }
+            )
         } label: {
-            Text("Add Task")
-            Image(systemName: "plus.square")
+            Text(
+                "taskView_baard_menu_action_add".localized
+            )
+            Image(
+                systemName: "plus.square"
+            )
         }
     }
 }

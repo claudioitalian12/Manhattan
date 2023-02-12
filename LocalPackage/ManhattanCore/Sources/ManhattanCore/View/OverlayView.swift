@@ -46,10 +46,14 @@ public struct OverlayView: View {
                     style: .systemThinMaterialDark
                 )
             )
-            .edgesIgnoringSafeArea(.all)
+            .edgesIgnoringSafeArea(
+                .all
+            )
             
             ProgressView()
-                .progressViewStyle(.circular)
+                .progressViewStyle(
+                    .circular
+                )
                 .colorInvert()
                 .brightness(1)
                 .padding()

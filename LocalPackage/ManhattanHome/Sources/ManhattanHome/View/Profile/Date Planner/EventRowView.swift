@@ -41,11 +41,14 @@ struct EventRow: View {
             alignment: .leading,
             spacing: 5.0
         ) {
-            Text(event.title)
-                .customEventRowTitleText()
-            
-            Text(event.dateFormatted)
-                .customEventRowDateText()
+            Text(
+                event.title
+            )
+            .customEventRowTitleText()
+            Text(
+                event.dateFormatted
+            )
+            .customEventRowDateText()
         }
         
         if event.isComplete {

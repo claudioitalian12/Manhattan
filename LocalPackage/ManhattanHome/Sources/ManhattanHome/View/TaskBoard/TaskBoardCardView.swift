@@ -29,11 +29,14 @@ struct TaskBoardCardView: View {
                 showDetail.toggle()
             } label: {
                 LazyVStack {
-                    Text(task.title)
-                        .customTaskBoardCardTitleText()
-
-                    Text(task.text)
-                        .customTaskBoardCardSubtitleText()
+                    Text(
+                        task.title
+                    )
+                    .customTaskBoardCardTitleText()
+                    Text(
+                        task.text
+                    )
+                    .customTaskBoardCardSubtitleText()
                 }
                 .customTaskBoardCardLazyVStack()
             }
@@ -46,9 +49,10 @@ struct TaskBoardCardView: View {
             TaskBoardDetailView(
                 task: task,
                 endEdit: $showDetail,
-                selectedState: TaskSection(rawValue: task.status) ?? .all
+                selectedState: TaskSection(
+                    rawValue: task.status
+                ) ?? .all
             )
         }
-
     }
 }

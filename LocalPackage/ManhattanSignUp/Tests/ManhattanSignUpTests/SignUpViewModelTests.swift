@@ -16,7 +16,6 @@ final class SignUpViewModelTests: XCTestCase {
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         signUpViewModel = SignUpViewModel(
-            parentCoordinator: SignUpCoordinator(),
             userService: RealmUserService()
         )
     }
@@ -29,18 +28,7 @@ final class SignUpViewModelTests: XCTestCase {
     func testSignUpViewData() throws {
         let signUpViewModel = try XCTUnwrap(self.signUpViewModel)
         
-        XCTAssertNil(signUpViewModel.parentCoordinator)
         XCTAssertEqual(signUpViewModel.username, "")
         XCTAssertEqual(signUpViewModel.password, "")
-    }
-    
-    func testSignUpPushDestination() throws {
-        let signUpViewModel = try XCTUnwrap(self.signUpViewModel)
-        
-        XCTAssertNil(
-            signUpViewModel.pushDestination(
-                destination: .home
-            )
-        )
     }
 }

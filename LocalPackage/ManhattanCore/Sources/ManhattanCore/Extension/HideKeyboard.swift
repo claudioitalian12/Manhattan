@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-#if canImport(UIKit)
 // MARK: View
 public extension View {
     /// hide keyboard.
@@ -22,4 +21,3 @@ public extension View {
         )
     }
 }
-#endif

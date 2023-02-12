@@ -22,10 +22,15 @@ struct TenDayForcastView: View {
         VStack(
             alignment: .leading
         ) {
-            Text("homeView_day_title".localized)
-                .font(.caption)
-                .opacity(opacityValue)
-            
+            Text(
+                "homeView_day_title".localized
+            )
+            .font(
+                .caption
+            )
+            .opacity(
+                opacityValue
+            )
             ForEach(
                 viewModel.dayWeather ?? [],
                 id: \.date
@@ -34,16 +39,20 @@ struct TenDayForcastView: View {
                     dailyWeather: dailyWeather
                 )
             }
-            .listStyle(.plain)
-            .padding(edgePadding)
+            .listStyle(
+                .plain
+            )
+            .padding(
+                edgePadding
+            )
         }
         .customVStackTenDayForecastView()
     }
     /**
-        Section Element.
-
-        - Parameter dailyWeather: daily weather.
-    */
+     Section Element.
+     
+     - Parameter dailyWeather: daily weather.
+     */
     @ViewBuilder
     private func sectionElement(
         dailyWeather: DayWeather
@@ -61,21 +70,30 @@ struct TenDayForcastView: View {
             Image(
                 systemName: "\(dailyWeather.symbolName)"
             )
-            .foregroundColor(.yellow)
-            Divider()
-                .hidden()
-            Text(dailyWeather.lowTemperature.formatted()
+            .foregroundColor(
+                .yellow
             )
-            .frame(maxWidth: .infinity)
             Divider()
                 .hidden()
-            Text(dailyWeather.highTemperature.formatted())
-                .frame(
-                    maxWidth: .infinity,
-                    alignment: .trailing
-                )
+            Text(
+                dailyWeather.lowTemperature.formatted()
+            )
+            .frame(
+                maxWidth: .infinity
+            )
+            Divider()
+                .hidden()
+            Text(
+                dailyWeather.highTemperature.formatted()
+            )
+            .frame(
+                maxWidth: .infinity,
+                alignment: .trailing
+            )
         }
-        .listRowBackground(Color.blue)
+        .listRowBackground(
+            Color.blue
+        )
         Divider()
     }
 }

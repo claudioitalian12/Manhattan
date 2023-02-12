@@ -24,46 +24,61 @@ struct TaskRow: View {
         HStack {
             Button {
                 if isEditing {
-                    appEnvironment.realm?.writeAsync({
-                        guard let thaw = task.thaw() else {
-                            task.isCompleted.toggle()
-                            return
+                    appEnvironment.realm?.writeAsync(
+                        {
+                            guard let thaw = task.thaw() else {
+                                task.isCompleted.toggle()
+                                return
+                            }
+                            thaw.isCompleted.toggle()
                         }
-                        thaw.isCompleted.toggle()
-                    })
+                    )
                 }
             } label: {
                 Image(
                     systemName: task.isCompleted ? "checkmark.circle.fill" : "circle"
                 )
             }
-            .buttonStyle(.plain)
-
+            .buttonStyle(
+                .plain
+            )
+            
             if isEditing || task.isNew {
                 TextField(
                     "eventTaskRow_profile_field_text".localized,
                     text: $task.text,
                     axis: .vertical
                 )
-                .focused($isFocused)
-                .onChange(of: isFocused) { newValue in
+                .focused(
+                    $isFocused
+                )
+                .onChange(
+                    of: isFocused
+                ) { newValue in
                     if newValue == false {
-                        appEnvironment.realm?.writeAsync({
-                            guard let thaw = task.thaw() else {
-                                task.isNew = false
-                                return
+                        appEnvironment.realm?.writeAsync(
+                            {
+                                guard let thaw = task.thaw() else {
+                                    task.isNew = false
+                                    return
+                                }
+                                thaw.isNew = false
                             }
-                            thaw.isNew = false
-                        })
+                        )
                     }
                 }
             } else {
-                Text(task.text)
+                Text(
+                    task.text
+                )
             }
-
+            
             Spacer()
         }
-        .padding(.vertical, 10.0)
+        .padding(
+            .vertical,
+            10.0
+        )
         .task {
             if task.isNew {
                 isFocused = true

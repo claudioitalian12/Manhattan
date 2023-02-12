@@ -45,7 +45,9 @@ struct SymbolPicker: View {
             Button {
                 dismiss()
             } label: {
-                Text("eventEditorView_profile_navigation_done_button".localized)
+                Text(
+                    "eventEditorView_profile_navigation_done_button".localized
+                )
             }
             .padding()
         }
@@ -57,9 +59,15 @@ struct SymbolPicker: View {
             Image(
                 systemName: viewModel.event.symbol
             )
-            .font(.title)
-            .imageScale(.large)
-            .foregroundColor(viewModel.selectedColor)
+            .font(
+                .title
+            )
+            .imageScale(
+                .large
+            )
+            .foregroundColor(
+                viewModel.selectedColor
+            )
         }
         .padding()
     }
@@ -67,50 +75,80 @@ struct SymbolPicker: View {
     @ViewBuilder
     func stackColorList() -> some View {
         HStack {
-            ForEach(ColorOptions.allCases, id: \.self) { colorOption in
+            ForEach(
+                ColorOptions.allCases,
+                id: \.self
+            ) { colorOption in
                 Button {
                     viewModel.selectedColor = colorOption.color
                     guard let eventColor = viewModel.event.realm else {
-                        appEnvironment.realm?.writeAsync({
-                            viewModel.event.color = colorOption.rawValue
-                        })
+                        appEnvironment.realm?.writeAsync(
+                            {
+                                viewModel.event.color = colorOption.rawValue
+                            }
+                        )
                         return
                     }
-                    eventColor.thaw().writeAsync({
-                        viewModel.event.thaw()?.color = colorOption.rawValue
-                    })
+                    eventColor.thaw().writeAsync(
+                        {
+                            viewModel.event.thaw()?.color = colorOption.rawValue
+                        }
+                    )
                 } label: {
                     Circle()
-                        .foregroundColor(colorOption.color)
+                        .foregroundColor(
+                            colorOption.color
+                        )
                 }
             }
         }
-        .padding(.horizontal)
-        .frame(height: 40.0)
+        .padding(
+            .horizontal
+        )
+        .frame(
+            height: 40.0
+        )
     }
     /// grid icon.
     @ViewBuilder
     func gridIcon() -> some View {
         ScrollView {
-            LazyVGrid(columns: columns) {
-                ForEach(viewModel.symbolNames, id: \.self) { symbolItem in
+            LazyVGrid(
+                columns: columns
+            ) {
+                ForEach(
+                    viewModel.symbolNames,
+                    id: \.self
+                ) { symbolItem in
                     Button {
                         guard let eventSymbol = viewModel.event.realm else {
-                            appEnvironment.realm?.writeAsync({
-                                viewModel.event.symbol = symbolItem.rawValue
-                            })
+                            appEnvironment.realm?.writeAsync(
+                                {
+                                    viewModel.event.symbol = symbolItem.rawValue
+                                }
+                            )
                             return
                         }
-                        eventSymbol.thaw().writeAsync({
-                            viewModel.event.thaw()?.symbol = symbolItem.rawValue
-                        })
+                        eventSymbol.thaw().writeAsync(
+                            {
+                                viewModel.event.thaw()?.symbol = symbolItem.rawValue
+                            }
+                        )
                     } label: {
-                        Image(systemName: symbolItem.rawValue)
-                            .sfSymbolStyling()
-                            .foregroundColor(viewModel.selectedColor)
-                            .padding(5.0)
+                        Image(
+                            systemName: symbolItem.rawValue
+                        )
+                        .sfSymbolStyling()
+                        .foregroundColor(
+                            viewModel.selectedColor
+                        )
+                        .padding(
+                            5.0
+                        )
                     }
-                    .buttonStyle(.plain)
+                    .buttonStyle(
+                        .plain
+                    )
                 }
             }
             .drawingGroup()

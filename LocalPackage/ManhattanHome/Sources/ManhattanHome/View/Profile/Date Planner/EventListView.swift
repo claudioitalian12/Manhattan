@@ -47,8 +47,12 @@ struct EventList: View {
     @ViewBuilder
     private func listHeader() -> some View {
         HStack() {
-            Text("eventListView_profile_title_text".localized)
-                .font(.title2)
+            Text(
+                "eventListView_profile_title_text".localized
+            )
+            .font(
+                .title2
+            )
             Button {
                 viewModel.newEvent = Event(
                     _id: ObjectId.generate(),
@@ -72,7 +76,9 @@ struct EventList: View {
         VStack(
             alignment: .leading
         ) {
-            ForEach(Period.allCases) { period in
+            ForEach(
+                Period.allCases
+            ) { period in
                 if !viewModel.eventData.sortedEvents(
                     period: period
                 ).isEmpty {
@@ -84,10 +90,10 @@ struct EventList: View {
         }
     }
     /**
-        List rows.
-
-        - Parameter listRows: list rows.
-    */
+     List rows.
+     
+     - Parameter listRows: list rows.
+     */
     @ViewBuilder
     private func listRows(
         period: Period
@@ -97,19 +103,25 @@ struct EventList: View {
             spacing: 20.0
         ) {
             Spacer()
-            Text(period.name)
-                .customEventSectionTitleDate()
+            Text(
+                period.name
+            )
+            .customEventSectionTitleDate()
             
-            ForEach(viewModel.eventData.sortedEvents(
-                period: period
-            )) { event in
-                EventRow(event: event)
-                    .customEventListRow(
-                        eventData: $viewModel.eventData,
-                        selectedEvent: $viewModel.selectedEvent,
-                        isPresented: $isPresentedEdit,
-                        event: event
-                    )
+            ForEach(
+                viewModel.eventData.sortedEvents(
+                    period: period
+                )
+            ) { event in
+                EventRow(
+                    event: event
+                )
+                .customEventListRow(
+                    eventData: $viewModel.eventData,
+                    selectedEvent: $viewModel.selectedEvent,
+                    isPresented: $isPresentedEdit,
+                    event: event
+                )
             }
         }
     }

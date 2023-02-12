@@ -32,14 +32,18 @@ struct TaskBoardCreateView: View {
                         Button {
                             showAddBoard.toggle()
                         } label: {
-                            Text("cancel")
+                            Text(
+                                "taskView_edit_task_button_cancel".localized
+                            )
                         }
                     }
                     ToolbarItem {
                         Button {
                             didTapDone()
                         } label: {
-                            Text("done")
+                            Text(
+                                "taskView_edit_task_button_done".localized
+                            )
                         }
                     }
                 }
@@ -50,44 +54,69 @@ struct TaskBoardCreateView: View {
     private func boardList() -> some View {
         List {
             Section {
-                ForEach(0..<usersID.count, id: \.self) { index in
-                    TaskBoardShareIDView(shareId: $usersID[index])
+                ForEach(
+                    0..<usersID.count,
+                    id: \.self
+                ) { index in
+                    TaskBoardShareIDView(
+                        shareId: $usersID[index]
+                    )
                 }
                 .onDelete { indexSet in
-                    usersID.remove(atOffsets: indexSet)
+                    usersID.remove(
+                        atOffsets: indexSet
+                    )
                 }
                 Button {
-                    usersID.append("")
+                    usersID.append(
+                        ""
+                    )
                 } label: {
-                    Text("Add ID")
+                    Text(
+                        "taskView_edit_task_button_id".localized
+                    )
                 }
             } header: {
                 TextField(
-                    "Board Name",
+                    "taskView_edit_task_title".localized,
                     text: $board.title
                 )
-                .font(.title)
-                .padding(.all, 20)
-                .multilineTextAlignment(.center)
+                .font(
+                    .title
+                )
+                .padding(
+                    .all,
+                    20
+                )
+                .multilineTextAlignment(
+                    .center
+                )
             }
         }
     }
     /// did tap done.
     private func didTapDone() {
         board.owner_id = appEnvironment.getUserID()
-        board.shared_id.append(appEnvironment.getUserID() ?? "")
-        board.shared_id.append(objectsIn: usersID)
+        board.shared_id.append(
+            appEnvironment.getUserID() ?? ""
+        )
+        board.shared_id.append(
+            objectsIn: usersID
+        )
         guard let list = self.appEnvironment.realm?.objects(BoardsData.self),
               let myList = list.first else {
             return
         }
-        
-        appEnvironment.realm?.writeAsync({
-            myList.boards.append(board)
-        }, onComplete: { error in
-            selection = board
-        })
-        
+        appEnvironment.realm?.writeAsync(
+            {
+                myList.boards.append(
+                    board
+                )
+            },
+            onComplete: { error in
+                selection = board
+            }
+        )
         showAddBoard.toggle()
     }
 }
