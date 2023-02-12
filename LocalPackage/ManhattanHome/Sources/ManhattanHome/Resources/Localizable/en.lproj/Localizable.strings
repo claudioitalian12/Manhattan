@@ -37,3 +37,14 @@
 "taskView_board_menu_create" = "Create Board";
 "taskView_board_menu_latest" = "Latest";
 "taskView_board_menu_oldest" = "Oldest";
+"taskView_board_task_done" = "Done";
+"taskView_board_task_body" = "Body";
+"taskView_board_task_add_attachment" = "Add attachment";
+"taskView_board_task_attachment" = "Attachments";
+"taskView_board_task_tasks" = "Tasks";
+"taskView_board_task_add_comment" = "Add comment";
+"taskView_board_task_comment" = "Comments";
+"taskView_board_status_all" = "All";
+"taskView_board_status_new" = "New";
+"taskView_board_status_progress" = "Progress";
+"taskView_board_status_closed" = "Closed";

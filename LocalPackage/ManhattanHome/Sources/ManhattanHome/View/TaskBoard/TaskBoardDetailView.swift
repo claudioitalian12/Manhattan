@@ -42,7 +42,7 @@ struct TaskBoardDetailView: View {
                     endEdit.toggle()
                 } label: {
                     Text(
-                        "Done"
+                        "taskView_board_task_done".localized
                     )
                 }
             }
@@ -76,10 +76,10 @@ struct TaskBoardDetailView: View {
                         ) { option in
                             if option != .all {
                                 Text(
-                                    option.rawValue
+                                    option.localized
                                 )
                                 .tag(
-                                    option.rawValue
+                                    option.localized
                                 )
                             }
                         }
@@ -115,7 +115,7 @@ struct TaskBoardDetailView: View {
             } header: {
                 HStack {
                     Text(
-                        "Body"
+                        "taskView_board_task_body".localized
                     )
                     Image(
                         systemName: "note.text"
@@ -191,13 +191,13 @@ struct TaskBoardDetailView: View {
                     )
                 } label: {
                     Text(
-                        "Add attachment"
+                        "taskView_board_task_add_attachment".localized
                     )
                 }
             } header: {
                 HStack {
                     Text(
-                        "Attachments"
+                        "taskView_board_task_attachment".localized
                     )
                     Image(
                         systemName: "link"
@@ -270,7 +270,7 @@ struct TaskBoardDetailView: View {
             } header: {
                 HStack {
                     Text(
-                        "Tasks"
+                        "taskView_board_task_tasks".localized
                     )
                     Image(
                         systemName: "list.bullet"
@@ -340,13 +340,13 @@ struct TaskBoardDetailView: View {
                     )
                 } label: {
                     Text(
-                        "Add comment"
+                        "taskView_board_task_add_comment".localized
                     )
                 }
             } header: {
                 HStack {
                     Text(
-                        "Comments"
+                        "taskView_board_task_comment".localized
                     )
                     Image(
                         systemName: "text.bubble.fill"

@@ -10,11 +10,15 @@ import Foundation
 // MARK: TaskSection
 enum TaskSection: String, CaseIterable {
     /// all
-    case all = "All"
+    case all = "taskView_board_status_all"
     /// new
-    case new = "New"
+    case new = "taskView_board_status_new"
     /// progress
-    case progress = "Progress"
+    case progress = "taskView_board_status_progress"
     /// closed
-    case closed = "Closed"
+    case closed = "taskView_board_status_closed"
+    /// localized
+    var localized: String {
+        self.rawValue.localized
+    }
 }

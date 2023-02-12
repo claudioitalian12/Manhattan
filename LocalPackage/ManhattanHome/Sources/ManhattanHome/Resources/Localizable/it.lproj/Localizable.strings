@@ -37,3 +37,14 @@
 "taskView_board_menu_create" = "Crea Board";
 "taskView_board_menu_latest" = "Meno Recenti";
 "taskView_board_menu_oldest" = "Recenti";
+"taskView_board_task_done" = "Fatto";
+"taskView_board_task_body" = "Descrizione";
+"taskView_board_task_add_attachment" = "Aggiungi link";
+"taskView_board_task_attachment" = "Link";
+"taskView_board_task_tasks" = "Tasks";
+"taskView_board_task_add_comment" = "Aggiungi commento";
+"taskView_board_task_comment" = "Commenti";
+"taskView_board_status_all" = "Tutti";
+"taskView_board_status_new" = "Nuovo";
+"taskView_board_status_progress" = "In Corso";
+"taskView_board_status_closed" = "Chiuso";

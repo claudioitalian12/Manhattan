@@ -310,10 +310,10 @@ struct TaskBoardView: View {
                 id: \.self
             ) { option in
                 Text(
-                    option.rawValue
+                    option.localized
                 )
                 .tag(
-                    option.rawValue
+                    option.localized
                 )
             }
         }
