@@ -3,8 +3,6 @@ import ManhattanCore
 
 // MARK: ManhattanHome
 public class ManhattanHome: ManhattanGatewayProtocol {
-    /// homeCoordinator.
-    private let homeCoordinator: any ManhattanHomeCoordinatorProtocol = ManhattanHomeCoordinator()
     /// gateway type.
     public var gatewayType: GatewayType
     /**
@@ -16,11 +14,14 @@ public class ManhattanHome: ManhattanGatewayProtocol {
         gatewayType: GatewayType
     ) {
         self.gatewayType = gatewayType
-        homeCoordinator.parentGateway = self
     }
     /// start.
     @ViewBuilder
     public func start() -> AnyView {
-        homeCoordinator.start()
+        AnyView(
+            HomeView(
+                viewModel: HomeFactory().getHomeViewModel()
+            )
+        )
     }
 }

@@ -35,10 +35,13 @@ struct ManhattanApp: App {
         switch appEnvironment.gateway {
         case .login:
             gatewayFactory.getManhattanLoginGateway().start()
+                .transitionAnimation()
         case .signUp:
             gatewayFactory.getManhattanSignUpGateway().start()
+                .transitionAnimation()
         case .home:
             gatewayFactory.getManhattanHomeGateway().start()
+                .transitionAnimation()
         }
     }
 }

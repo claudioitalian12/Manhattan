@@ -21,15 +21,29 @@ struct TaskBoardDetailView: View {
     @State var selectedState: TaskSection
     /// selected index.
     @State var selectedIndex: Int = 0
+    /// selected index.
+    @State var editSection: Bool = false
     /// body.
     var body: some View {
         NavigationStack {
             List {
                 sectionTaskState()
+                    .disabled(
+                        !editSection
+                    )
                 sectionBody()
+                    .disabled(
+                        !editSection
+                    )
                 sectionAttachments()
                 sectionTask()
+                    .disabled(
+                        !editSection
+                    )
                 sectionComments()
+                    .disabled(
+                        !editSection
+                    )
             }
             .scrollIndicators(
                 .hidden
@@ -38,13 +52,44 @@ struct TaskBoardDetailView: View {
                 .insetGrouped
             )
             .toolbar {
-                Button {
-                    endEdit.toggle()
-                } label: {
-                    Text(
-                        "taskView_board_task_done".localized
-                    )
+                ToolbarItem(
+                    placement: .cancellationAction
+                ) {
+                    cancelButton()
                 }
+                ToolbarItem {
+                    rightButton()
+                }
+            }
+        }
+    }
+    /// cancel button.
+    @ViewBuilder
+    func cancelButton() -> some View {
+        Button(
+            "eventEditorView_profile_navigation_remove_button".localized
+        ) {
+            endEdit.toggle()
+        }
+    }
+    /// right button.
+    @ViewBuilder
+    func rightButton() -> some View {
+        if editSection {
+            Button {
+                endEdit.toggle()
+            } label: {
+                Text(
+                    "taskView_board_task_done".localized
+                )
+            }
+        } else {
+            Button {
+                editSection.toggle()
+            } label: {
+                Text(
+                    "eventEditorView_profile_navigation_edit_button".localized
+                )
             }
         }
     }
@@ -90,13 +135,15 @@ struct TaskBoardDetailView: View {
                     .task(
                         id: selectedState
                     ) {
-                        appEnvironment.realm?.writeAsync({
-                            guard let thaw = task.thaw() else {
-                                task.status = selectedState.rawValue
-                                return
+                        appEnvironment.realm?.writeAsync(
+                            {
+                                guard let thaw = task.thaw() else {
+                                    task.status = selectedState.rawValue
+                                    return
+                                }
+                                thaw.status = selectedState.rawValue
                             }
-                            thaw.status = selectedState.rawValue
-                        })
+                        )
                     }
                 }
             }
@@ -112,6 +159,7 @@ struct TaskBoardDetailView: View {
                     text: $task.text,
                     axis: .vertical
                 )
+                .padding()
             } header: {
                 HStack {
                     Text(
@@ -133,32 +181,44 @@ struct TaskBoardDetailView: View {
                     0..<task.attachments.count,
                     id: \.self
                 ) { index in
-                    TextField(
-                        task.attachments[index],
-                        text: Binding(
-                            get: {
-                                task.attachments[index]
-                            },
-                            set: { (value) in
-                                appEnvironment.realm?.writeAsync(
-                                    {
-                                        guard let thaw = task.thaw() else {
-                                            task.attachments[index] = value
-                                            return
+                    if editSection {
+                        TextField(
+                            text: Binding(
+                                get: {
+                                    task.attachments[index]
+                                },
+                                set: { (value) in
+                                    appEnvironment.realm?.writeAsync(
+                                        {
+                                            guard let thaw = task.thaw() else {
+                                                task.attachments[index] = value
+                                                return
+                                            }
+                                            thaw.attachments[index] = value
                                         }
-                                        thaw.attachments[index] = value
-                                    }
+                                    )
+                                }
+                            ),
+                            axis: .vertical,
+                            label: {
+                                Text(
+                                    task.attachments[index]
                                 )
                             }
-                        ),
-                        axis: .vertical
-                    )
-                    .keyboardType(
-                        .URL
-                    )
-                    .textContentType(
-                        .URL
-                    )
+                        )
+                        .keyboardType(
+                            .URL
+                        )
+                        .textContentType(
+                            .URL
+                        )
+                    } else {
+                        Text(
+                            .init(
+                                "[\(task.attachments[index])](\(task.attachments[index]))"
+                            )
+                        )
+                    }
                 }
                 .onDelete { indexSet in
                     appEnvironment.realm?.writeAsync(
@@ -192,6 +252,9 @@ struct TaskBoardDetailView: View {
                 } label: {
                     Text(
                         "taskView_board_task_add_attachment".localized
+                    )
+                    .disabled(
+                        !editSection
                     )
                 }
             } header: {

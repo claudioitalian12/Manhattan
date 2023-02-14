@@ -28,7 +28,7 @@ struct TaskBoardAddTaskView: View {
                 comments: RealmSwift.List<String>(),
                 owner_id: appEnvironment.getUserID(),
                 shared_id: board.shared_id,
-                status: "taskView_baard_task_status".localized,
+                status: "taskView_board_status_new",
                 text: "taskView_baard_task_title".localized,
                 title: "taskView_baard_task_title".localized
             )

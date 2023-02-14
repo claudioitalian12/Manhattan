@@ -1,0 +1,12 @@
+//=============================================== Sign Up  ===========================================
+
+"signinView_label_title" = "Inscrição";
+"signinView_label_username" = "Introduza o seu username";
+"signinView_label_password" = "Introduza a sua password";
+"signUpView_button_username_placeholder" = "Username";
+"signUpView_button_password_placeholder" = "Password com um mínimo de 6 caracteres";
+"signUpView_button_home" = "Login";
+"signUpView_button_back" = "Voltar";
+"signUpView_alert_title" = "Atenção!";
+"signUpView_alert_subtitle" = "algo correu mal, tente mais tarde.";
+"signUpView_alert_button" = "Ok";

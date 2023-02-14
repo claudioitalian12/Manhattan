@@ -12,7 +12,7 @@ import SwiftUI
 // MARK: EventListViewModel
 public final class EventListViewModel: ManhattanViewModelProtocol {
     /// event data.
-    @ObservedObject var eventData: EventData = EventData()
+    @Published var eventData: EventData = EventData()
     /// new event.
     @ObservedRealmObject var newEvent: Event = Event()
     /// selected event.

@@ -14,7 +14,7 @@ struct SymbolPicker: View {
     /// app environment.
     @Environment(\.appEnvironmentValue) var appEnvironment: AppEnvironment
     /// view model.
-    @ObservedObject var viewModel: SymbolPickerViewModel
+    @StateObject var viewModel: SymbolPickerViewModel
     /// dismiss.
     @Environment(\.dismiss) private var dismiss
     /// columns.

@@ -17,12 +17,10 @@ public final class TaskBoardViewModel: ManhattanViewModelProtocol {
     /**
         Init.
 
-        - Parameter homeShowOverlay: home show overlay.
         - Parameter isLoading: is loading.
         - Parameter segmentationSelection: segmentation selection.
     */
     init(
-        homeShowOverlay: Bool = false,
         isLoading: Bool = true,
         segmentationSelection: TaskSection = .all
     ) {

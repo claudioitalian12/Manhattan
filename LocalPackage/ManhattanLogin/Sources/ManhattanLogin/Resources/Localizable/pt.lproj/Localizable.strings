@@ -1,0 +1,10 @@
+//=============================================== Login  ===========================================
+
+"loginView_label_title" = "Manhatthan";
+"loginView_button_login" = "Login";
+"loginView_button_login_placeholder" = "Username";
+"loginView_button_signin" = "Registar";
+"loginView_button_signin_placeholder" = "Password";
+"loginView_alert_title" = "Atenção!";
+"loginView_alert_subtitle" = "algo correu mal, tente mais tarde ou verifique o seu nome de username/password.";
+"loginView_alert_button" = "Ok";

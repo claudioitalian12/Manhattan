@@ -41,10 +41,6 @@ public final class HomeViewModel: ManhattanViewModelProtocol {
     func getProfileViewModel() -> ProfileViewModel {
         HomeFactory().getProfileViewModel()
     }
-    /// get task board view model.
-    func getTaskBoardViewModel() -> TaskBoardViewModel {
-        HomeFactory().getTaskBoardViewModel()
-    }
     /**
         Set sync.
 

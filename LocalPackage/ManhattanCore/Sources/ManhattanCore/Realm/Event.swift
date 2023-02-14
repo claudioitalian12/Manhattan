@@ -19,7 +19,7 @@ public class Event: Object, ObjectKeyIdentifiable {
     /// owner id.
     @Persisted public var owner_id: String?
     /// symbol.
-    @Persisted public var symbol: String
+    @Persisted public var symbol: String = EventSymbols.randomName
     /// tasks.
     @Persisted public var tasks: RealmSwift.List<EventTask> = RealmSwift.List<EventTask>()
     /// title.

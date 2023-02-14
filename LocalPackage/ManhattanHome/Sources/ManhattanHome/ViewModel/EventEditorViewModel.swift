@@ -43,4 +43,15 @@ public final class EventEditorViewModel: ManhattanViewModelProtocol {
         self.isNew = isNew
         self.isEditing = isEditing
     }
+    /// close keyboard.
+    func closeKeyboard() {
+        UIApplication.shared.sendAction(
+            #selector(
+                UIResponder.resignFirstResponder
+            ),
+            to: nil,
+            from: nil,
+            for: nil
+        )
+    }
 }

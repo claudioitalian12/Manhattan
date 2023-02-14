@@ -14,9 +14,7 @@ final class LoginViewModelTests: XCTestCase {
     
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        loginViewModel = LoginViewModel(
-            parentCoordinator: LoginCoordinator()
-        )
+        loginViewModel = LoginViewModel()
     }
 
     override func tearDownWithError() throws {
@@ -27,23 +25,7 @@ final class LoginViewModelTests: XCTestCase {
     func testLoginViewData() throws {
         let loginViewModel = try XCTUnwrap(self.loginViewModel)
         
-        XCTAssertNil(loginViewModel.parentCoordinator)
         XCTAssertEqual(loginViewModel.username, "")
         XCTAssertEqual(loginViewModel.password, "")
-    }
-    
-    func testLoginPushDestination() throws {
-        let loginViewModel = try XCTUnwrap(self.loginViewModel)
-        
-        XCTAssertNotNil(
-            loginViewModel.pushDestination(
-                destination: .signup
-            )
-        )
-        XCTAssertNil(
-            loginViewModel.pushDestination(
-                destination: .home
-            )
-        )
     }
 }

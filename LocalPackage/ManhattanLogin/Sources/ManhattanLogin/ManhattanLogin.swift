@@ -11,8 +11,6 @@ import SwiftUI
 
 // MARK: ManhattanLoginGateway
 public class ManhattanLoginGateway: ManhattanGatewayProtocol {
-    /// login coordinator.
-    private let loginCoordinator: LoginCoordinatorProtocol = LoginCoordinator()
     /// gateway type.
     public var gatewayType: GatewayType
     /**
@@ -24,11 +22,16 @@ public class ManhattanLoginGateway: ManhattanGatewayProtocol {
         gatewayType: GatewayType
     ) {
         self.gatewayType = gatewayType
-        loginCoordinator.parentGateway = self
     }
     /// start.
     @ViewBuilder
     public func start() -> AnyView {
-        loginCoordinator.start()
+        AnyView(
+            LoginView(
+                viewModel: LoginFactory().getLoginViewModel(
+                    userService: RealmUserService()
+                )
+            )
+        )
     }
 }

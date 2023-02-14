@@ -70,15 +70,6 @@ class HomeFactory: HomeFactoryProtocol {
     func getProfileViewModel() -> ProfileViewModel {
         ProfileViewModel()
     }
-    /// get task board view model.
-    func getTaskBoardViewModel(
-    ) -> TaskBoardViewModel {
-        TaskBoardViewModel(
-            homeShowOverlay: false,
-            isLoading: false,
-            segmentationSelection: .all
-        )
-    }
     /// get list view model.
     func getListViewModel() -> EventListViewModel {
         EventListViewModel()

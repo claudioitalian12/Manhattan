@@ -14,7 +14,7 @@ struct TaskBoardView: View {
     /// app environment.
     @Environment(\.appEnvironmentValue) var appEnvironment: AppEnvironment
     /// view model.
-    @ObservedObject var viewModel: TaskBoardViewModel
+    @StateObject var viewModel: TaskBoardViewModel = TaskBoardViewModel()
     /// boards data.
     @StateRealmObject var boardsData: BoardsData = BoardsData()
     /// selection.
@@ -30,13 +30,8 @@ struct TaskBoardView: View {
     /**
      Init.
      
-     - Parameter viewModel: view model.
      */
-    init(
-        viewModel: TaskBoardViewModel
-    ){
-        self.viewModel = viewModel
-        
+    init(){
         UISegmentedControl
             .appearance()
             .backgroundColor = .systemBlue

@@ -55,9 +55,7 @@ struct HomeView: View {
             ProfileView(
                 homeShowOverlay: $viewModel.homeShowOverlay
             )
-            TaskBoardView(
-                viewModel: viewModel.getTaskBoardViewModel()
-            )
+            TaskBoardView()
         }
         .customHStackHome()
     }
@@ -68,8 +66,6 @@ struct HomeView: View {
         ProfileView(
             homeShowOverlay: $viewModel.homeShowOverlay
         )
-        TaskBoardView(
-            viewModel: viewModel.getTaskBoardViewModel()
-        )
+        TaskBoardView()
     }
 }

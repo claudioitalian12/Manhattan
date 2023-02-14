@@ -100,7 +100,9 @@ struct EventEditor: View {
                         realm: appEnvironment.realm,
                         event: viewModel.event
                     )
-                    isPresented.toggle()
+                    Task {
+                        isPresented.toggle()
+                    }
                 } catch {
                     isPresented.toggle()
                 }
@@ -118,6 +120,7 @@ struct EventEditor: View {
                     }
                 }
             }
+            viewModel.closeKeyboard()
             viewModel.isEditing.toggle()
         } label: {
             Text(

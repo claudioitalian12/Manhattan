@@ -34,11 +34,11 @@ struct EventDetail: View {
         .disabled(
             !isEditing
         )
-#if os(iOS)
+        #if os(iOS)
         .navigationBarTitleDisplayMode(
             .inline
         )
-#endif
+        #endif
         .sheet(
             isPresented: $isPickingSymbol
         ) {
@@ -77,7 +77,7 @@ struct EventDetail: View {
                 .horizontal,
                 5.0
             )
-            
+
             if isEditing {
                 TextField(
                     "eventDetailView_profile_title_textfield".localized,
@@ -129,10 +129,10 @@ struct EventDetail: View {
         ForEach(
             event.tasks
         ) { eventTask in
-            TaskRow(
-                isEditing: $isEditing,
-                task: eventTask
-            )
+                TaskRow(
+                    isEditing: $isEditing,
+                    task: eventTask
+                )
         }
         .onDelete(
             perform: { indexSet in
@@ -146,7 +146,9 @@ struct EventDetail: View {
     @ViewBuilder
     func addTaskButton() -> some View {
         Button {
-            writeElement()
+            Task {
+                writeElement()
+            }
         } label: {
             HStack {
                 Image(
@@ -162,10 +164,10 @@ struct EventDetail: View {
         )
     }
     /**
-     Delete Element.
-     
-     - Parameter indexSet: index set.
-     */
+        Delete Element.
+
+        - Parameter indexSet: index set.
+    */
     @MainActor
     private func deleteElement(
         indexSet: IndexSet
@@ -211,7 +213,7 @@ struct EventDetail: View {
                 owner_id: appEnvironment.getUserID(),
                 text: ""
             )
-            event.thaw()?.tasks.append(
+            $event.tasks.append(
                 eventTask
             )
         }

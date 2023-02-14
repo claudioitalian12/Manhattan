@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5D585A632943E3C0008DE9CA /* ManhattanGatewayFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D585A622943E3C0008DE9CA /* ManhattanGatewayFactory.swift */; };
+		5D60375F299A531000994F6B /* TransitionAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D60375E299A531000994F6B /* TransitionAnimation.swift */; };
 		5DB3086F296AD062003D6421 /* ManhattanCore in Frameworks */ = {isa = PBXBuildFile; productRef = 5DB3086E296AD062003D6421 /* ManhattanCore */; };
 		5DB30871296AD062003D6421 /* ManhattanHome in Frameworks */ = {isa = PBXBuildFile; productRef = 5DB30870296AD062003D6421 /* ManhattanHome */; };
 		5DB30873296AD062003D6421 /* ManhattanLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 5DB30872296AD062003D6421 /* ManhattanLogin */; };
@@ -44,6 +45,7 @@
 		5D585A622943E3C0008DE9CA /* ManhattanGatewayFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManhattanGatewayFactory.swift; sourceTree = "<group>"; };
 		5D585A642944B317008DE9CA /* ManhattanHome */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = ManhattanHome; sourceTree = "<group>"; };
 		5D585A6729462C5D008DE9CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		5D60375E299A531000994F6B /* TransitionAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionAnimation.swift; sourceTree = "<group>"; };
 		5DBE35E9293A932C009CCCC7 /* ManhattanDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ManhattanDebug.entitlements; sourceTree = "<group>"; };
 		5DEDFCE529303D5A001822CF /* Manhattan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Manhattan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DEDFCE829303D5A001822CF /* ManhattanApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManhattanApp.swift; sourceTree = "<group>"; };
@@ -86,6 +88,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5D603760299B86AA00994F6B /* App */ = {
+			isa = PBXGroup;
+			children = (
+				5DEDFCE829303D5A001822CF /* ManhattanApp.swift */,
+				5D585A622943E3C0008DE9CA /* ManhattanGatewayFactory.swift */,
+				5D60375E299A531000994F6B /* TransitionAnimation.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
 		5DB3086B296ACFF0003D6421 /* LocalPackage */ = {
 			isa = PBXGroup;
 			children = (
@@ -129,10 +141,9 @@
 		5DEDFCE729303D5A001822CF /* Manhattan */ = {
 			isa = PBXGroup;
 			children = (
+				5D603760299B86AA00994F6B /* App */,
 				5D585A6729462C5D008DE9CA /* Info.plist */,
 				5DBE35E9293A932C009CCCC7 /* ManhattanDebug.entitlements */,
-				5DEDFCE829303D5A001822CF /* ManhattanApp.swift */,
-				5D585A622943E3C0008DE9CA /* ManhattanGatewayFactory.swift */,
 				5DEDFCEC29303D5B001822CF /* Assets.xcassets */,
 				5DEDFCEE29303D5B001822CF /* Manhattan.entitlements */,
 				5DEDFCEF29303D5B001822CF /* Preview Content */,
@@ -258,6 +269,8 @@
 				en,
 				Base,
 				it,
+				"pt-BR",
+				es,
 			);
 			mainGroup = 5DEDFCDC29303D5A001822CF;
 			productRefGroup = 5DEDFCE629303D5A001822CF /* Products */;
@@ -304,6 +317,7 @@
 			files = (
 				5D585A632943E3C0008DE9CA /* ManhattanGatewayFactory.swift in Sources */,
 				5DEDFCE929303D5A001822CF /* ManhattanApp.swift in Sources */,
+				5D60375F299A531000994F6B /* TransitionAnimation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -465,7 +479,7 @@
 				CODE_SIGN_ENTITLEMENTS = Manhattan/ManhattanDebug.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 11;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Manhattan/Preview Content\"";
 				DEVELOPMENT_TEAM = 3LF4A2398Q;
@@ -513,7 +527,7 @@
 				CODE_SIGN_ENTITLEMENTS = Manhattan/Manhattan.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 11;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Manhattan/Preview Content\"";
 				DEVELOPMENT_TEAM = 3LF4A2398Q;

@@ -13,7 +13,7 @@ import OSLog
 // MARK: EventData
 final class EventData: ObservableObject {
     /// events
-    @ObservedRealmObject var events: RealmSwift.List<Event> = RealmSwift.List<Event>()
+    @Published var events: RealmSwift.List<Event> = RealmSwift.List<Event>()
     /**
         Init.
 
@@ -29,6 +29,7 @@ final class EventData: ObservableObject {
 
         - Parameter realm: realm.
     */
+    @MainActor
     func setEventsList(
         realm: Realm?
     ) {
@@ -62,7 +63,10 @@ final class EventData: ObservableObject {
             }
         ) { [weak self] error in
             if let error {
-                os_log(.debug, "\(error.localizedDescription)")
+                os_log(
+                    .debug,
+                    "\(error.localizedDescription)"
+                )
                 return
             }
             guard let self else { return }
@@ -93,7 +97,7 @@ final class EventData: ObservableObject {
         ) {
             guard let eventThaw = event.thaw() else { return }
             
-            event.thaw()?.realm?.writeAsync (
+            event.thaw()?.realm?.writeAsync(
                 {
                     event.thaw()?.realm?.add(
                         eventThaw,
@@ -118,7 +122,7 @@ final class EventData: ObservableObject {
                 )
             }
         } else {
-            realm?.writeAsync (
+            realm?.writeAsync(
                 {
                     realm?.add(
                         event
@@ -148,6 +152,7 @@ final class EventData: ObservableObject {
 
         - Parameter event: event.
     */
+    @MainActor
     func exists(
         _ event: Event
     ) -> Bool {
@@ -158,6 +163,7 @@ final class EventData: ObservableObject {
 
         - Parameter period: period.
     */
+    @MainActor
     func sortedEvents(
         period: Period
     ) -> RealmSwift.List<Event> {
