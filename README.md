@@ -1,8 +1,20 @@
 # Manhattan
 
-[[images/1290x2796bb.png]]
-[[images/1290x2796bb(1).png]]
-[[images/1290x2796bb(2).png]]
+<table style="width: 100%">
+<tr>
+<figure>
+<th>
+<img src="images/1290x2796bb.png" width="150" height="300">
+</th>
+<th>
+<img src="images/1290x2796bb(1).png" width="150" height="300">
+</th>
+<th>
+<img src="images/1290x2796bb(2).png" width="150" height="300">
+</th>
+</figure>
+</tr>
+</table>
 
 ### 1. Futures
 
