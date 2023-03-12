@@ -8,6 +8,7 @@
 import ManhattanCore
 import RealmSwift
 import SwiftUI
+import OSLog
 
 // MARK: TaskBoardCardView
 struct TaskBoardDetailView: View {
@@ -60,8 +61,64 @@ struct TaskBoardDetailView: View {
                 ToolbarItem {
                     rightButton()
                 }
+                
+                ToolbarItem(
+                    placement: .bottomBar
+                ) {
+                    deleteButton()
+                        .opacity(
+                            editSection ? 1:0
+                        )
+                        .disabled(
+                            !editSection
+                        )
+                }
             }
         }
+    }
+    /// delete button.
+    @ViewBuilder
+    func deleteButton() -> some View {
+        Button(
+            role: .destructive,
+            action: {
+                guard let eventThaw = task.thaw() else {
+                    return
+                }
+                
+                eventThaw.realm?.writeAsync(
+                    {
+                        eventThaw.realm?.delete(
+                            eventThaw
+                        )
+                        os_log(
+                            .debug,
+                            "Delete, deleting object."
+                        )
+                        endEdit.toggle()
+                    },
+                    onComplete: { error in
+                        if let error {
+                            os_log(
+                                .debug,
+                                "\(error.localizedDescription)"
+                            )
+                            return
+                        }
+                    }
+                )
+            }, label: {
+                Text(
+                    "\(Image(systemName: "trash.circle.fill")) \("eventEditorView_profile_toolbar_delete_button".localized)"
+                )
+                .font(
+                    .title2
+                )
+                .foregroundColor(
+                    .red
+                )
+            }
+        )
     }
     /// cancel button.
     @ViewBuilder

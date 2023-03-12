@@ -116,6 +116,7 @@ struct EventRowHstackViewModifier: ViewModifier {
     }
 }
 
+
 extension HStack {
     func customEventHstack(
         remainingTaskCount: Int

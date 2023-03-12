@@ -12,13 +12,13 @@ import SwiftUI
 // MARK: ProfileViewModel
 public final class ProfileViewModel: ManhattanViewModelProtocol {
     /// date.
-    @Published var date = Date.now
+    @Published var date: Date = Date.now
     /// is loading.
-    @Published var isLoading = true
+    @Published var isLoading: Bool = true
     /// error message.
     @Published var errorMessage: String = ""
     /// is alert hidden.
-    @Published var isAlertHidden = false
+    @Published var isAlertHidden: Bool = false
     /// placeholder profile.
     @Published var placeholderProfile: Bool = true
     /**
@@ -77,8 +77,10 @@ public final class ProfileViewModel: ManhattanViewModelProtocol {
             )
             appEnvironment.gateway = .login
         } catch {
-            errorMessage = error.localizedDescription
-            isAlertHidden = !isAlertHidden
+            showErrorAlert(
+                localizedDescription: error.localizedDescription,
+                isAlertHidden: !isAlertHidden
+            )
         }
     }
     /**
@@ -103,8 +105,19 @@ public final class ProfileViewModel: ManhattanViewModelProtocol {
         do {
             try await app.setSync()
         } catch {
-            throw error
+            showErrorAlert(
+                localizedDescription: error.localizedDescription,
+                isAlertHidden: !isAlertHidden
+            )
         }
+    }
+    /// show error alert.
+    func showErrorAlert(
+        localizedDescription: String,
+        isAlertHidden: Bool
+    ) {
+        self.errorMessage = localizedDescription
+        self.isAlertHidden = !isAlertHidden
     }
     /// get list view model.
     func getListViewModel() -> EventListViewModel {

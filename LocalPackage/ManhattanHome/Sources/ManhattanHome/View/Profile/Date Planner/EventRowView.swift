@@ -12,7 +12,7 @@ import SwiftUI
 // MARK: EventRow
 struct EventRow: View {
     /// event.
-    @ObservedRealmObject var event: Event
+    @State var event: Event
     /// body.
     var body: some View {
         HStack {

@@ -26,22 +26,36 @@ struct ManhattanApp: App {
     /// setupManhattanView.
     private func setupManhattanView() -> some Scene {
         WindowGroup {
-            getAppView()
+            getAppView(
+                gateway: appEnvironment.gateway
+            )
         }
     }
-    /// getAppView.
+    /// get App View.
     @ViewBuilder
-    private func getAppView() -> some View {
-        switch appEnvironment.gateway {
+    private func getAppView(
+        gateway: GatewayType
+    ) -> some View {
+        getGateway(
+            gateway: gateway
+        )
+        .start()
+        .transitionAnimation()
+    }
+    /// get Gateway.
+    private func getGateway(
+        gateway: GatewayType
+    ) -> any ManhattanGatewayProtocol {
+        switch gateway {
         case .login:
-            gatewayFactory.getManhattanLoginGateway().start()
-                .transitionAnimation()
+            return gatewayFactory
+                .getManhattanLoginGateway()
         case .signUp:
-            gatewayFactory.getManhattanSignUpGateway().start()
-                .transitionAnimation()
+            return gatewayFactory
+                .getManhattanSignUpGateway()
         case .home:
-            gatewayFactory.getManhattanHomeGateway().start()
-                .transitionAnimation()
+            return gatewayFactory
+                .getManhattanHomeGateway()
         }
     }
 }

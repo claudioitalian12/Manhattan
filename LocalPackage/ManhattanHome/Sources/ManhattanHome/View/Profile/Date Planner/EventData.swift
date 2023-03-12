@@ -96,54 +96,45 @@ final class EventData: ObservableObject {
             }
         ) {
             guard let eventThaw = event.thaw() else { return }
-            
-            event.thaw()?.realm?.writeAsync(
-                {
-                    event.thaw()?.realm?.add(
-                        eventThaw,
-                        update: .modified
-                    )
-                }
-            ) { [weak self] error in
-                if let error {
-                    os_log(
-                        .debug,
-                        "\(error.localizedDescription)"
-                    )
-                    return
-                }
-                guard let self else { return }
-                self.setEventsList(
-                    realm: realm
+            do {
+                try event.thaw()?.realm?.write(
+                    {
+                        event.thaw()?.realm?.add(
+                            eventThaw,
+                            update: .modified
+                        )
+                    }
                 )
                 os_log(
                     .debug,
                     "Done, saving any changes to \(event.title)."
                 )
+            } catch {
+                os_log(
+                    .debug,
+                    "\(error.localizedDescription)"
+                )
+                throw error
             }
         } else {
-            realm?.writeAsync(
-                {
-                    realm?.add(
-                        event
-                    )
-                }
-            ) { [weak self] error in
-                if let error {
-                    os_log(
-                        .debug,
-                        "\(error.localizedDescription)"
-                    )
-                    return
-                }
-                guard let self else { return }
-                self.setEventsList(
-                    realm: realm
+            do {
+                try realm?.write(
+                    {
+                        realm?.add(
+                            event
+                        )
+                    }
                 )
                 os_log(
                     .debug,
                     "Done, saving any changes to \(event.title)."
                 )
+            } catch {
+                os_log(
+                    .debug,
+                    "\(error.localizedDescription)"
+                )
+                throw error
             }
         }
     }

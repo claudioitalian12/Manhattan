@@ -317,12 +317,14 @@ struct TaskBoardView: View {
     /// view board tasks.
     @ViewBuilder
     private func viewBoardTasks() -> some View {
-        if addTask == true || addTask == false, listOrderLatest {
+        if listOrderLatest,
+           addTask == true || addTask == false {
             ForEach(
                 $selection.boardTasks.reversed()
             ) { index in
                 if viewModel.segmentationSelection.rawValue == index.status.wrappedValue ||
-                    viewModel.segmentationSelection == .all {
+                    viewModel.segmentationSelection == .all,
+                   index.wrappedValue.realm != nil {
                     TaskBoardCardView(
                         task: index,
                         doneTask: $addTask
@@ -334,7 +336,8 @@ struct TaskBoardView: View {
                 $selection.boardTasks
             ) { index in
                 if viewModel.segmentationSelection.rawValue == index.status.wrappedValue ||
-                    viewModel.segmentationSelection == .all {
+                    viewModel.segmentationSelection == .all,
+                   index.wrappedValue.realm != nil {
                     TaskBoardCardView(
                         task: index,
                         doneTask: $addTask

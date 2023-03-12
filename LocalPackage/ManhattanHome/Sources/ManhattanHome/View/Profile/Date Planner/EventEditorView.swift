@@ -94,34 +94,37 @@ struct EventEditor: View {
     @ViewBuilder
     func rightButton() -> some View {
         Button {
-            if viewModel.isNew {
-                do {
-                    try eventData.add(
-                        realm: appEnvironment.realm,
-                        event: viewModel.event
-                    )
-                    Task {
+            Task {
+                if viewModel.isNew {
+                    do {
+                        try eventData.add(
+                            realm: appEnvironment.realm,
+                            event: viewModel.event
+                        )
+                        eventData.setEventsList(
+                            realm: appEnvironment.realm
+                        )
+                        isPresented.toggle()
+                    } catch {
                         isPresented.toggle()
                     }
-                } catch {
-                    isPresented.toggle()
-                }
-            } else {
-                if viewModel.isEditing && !viewModel.isDeleted {
-                    withAnimation {
-                        do {
-                            try eventData.add(
-                                realm: appEnvironment.realm,
-                                event: viewModel.editingEvent
-                            )
-                        } catch {
-                            isPresented.toggle()
+                } else {
+                    if viewModel.isEditing && !viewModel.isDeleted {
+                        withAnimation {
+                            do {
+                                try eventData.add(
+                                    realm: appEnvironment.realm,
+                                    event: viewModel.editingEvent
+                                )
+                            } catch {
+                                isPresented.toggle()
+                            }
                         }
                     }
                 }
+                viewModel.closeKeyboard()
+                viewModel.isEditing.toggle()
             }
-            viewModel.closeKeyboard()
-            viewModel.isEditing.toggle()
         } label: {
             Text(
                 viewModel.isNew ? "eventEditorView_profile_navigation_add_button".localized : (

@@ -16,7 +16,7 @@ public final class AppEnvironment: ObservableObject, EnvironmentKey {
     @Published public var realm: Realm? = nil
     /// realm app object
     @Published var app = RealmSwift.App(
-        id: "manhattan-uyvwz"
+        id: ""
     )
     /// gateway type
     @Published public var gateway: GatewayType = .login
